@@ -1,0 +1,4 @@
+interface:
+  display_name: "Callbell Dev"
+  short_description: "Einfachste tragfähige Lösung für Codearbeit wählen"
+  default_prompt: "Nutze $callbell-dev, um für diese Codearbeit die einfachste vollständig tragfähige Lösung zu wählen."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Callbell Web"
+  short_description: "Webprodukte fachlich klären und prüfen"
+  default_prompt: "Nutze $callbell-web, um diese Webproduktfrage fachlich zu klären."

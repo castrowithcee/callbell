@@ -1,0 +1,7 @@
+interface:
+  display_name: "Callbell Core"
+  short_description: "Setup, Diagnose und Core-Werkzeuge steuern"
+  default_prompt: "Nutze $callbell-core setup, um den Callbell-Core in diesem Projekt einzurichten."
+
+policy:
+  allow_implicit_invocation: false

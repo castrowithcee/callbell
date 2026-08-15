@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "callbell-web",
+  "displayName": "Callbell Web",
+  "version": "0.1.2",
+  "description": "Web-Capability für Callbell: Produktprofil, Fähigkeiten, UI, Daten, Architektur, Sicherheit und Betrieb fachlich klären, ohne einen eigenen Arbeitsloop zu besitzen.",
+  "author": { "name": "Callbell", "url": "https://github.com/castrowithcee" },
+  "homepage": "https://github.com/castrowithcee/callbell",
+  "repository": "https://github.com/castrowithcee/callbell",
+  "license": "MIT",
+  "keywords": ["web", "product", "architecture", "saas", "ui", "self-hosting"],
+  "skills": "./skills/"
+}

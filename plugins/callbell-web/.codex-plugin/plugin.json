@@ -1,0 +1,24 @@
+{
+  "name": "callbell-web",
+  "version": "0.1.2",
+  "description": "Web-Capability für Callbell: Produktprofil, Fähigkeiten, UI, Daten, Architektur, Sicherheit und Betrieb fachlich klären, ohne einen eigenen Arbeitsloop zu besitzen.",
+  "author": { "name": "Callbell" },
+  "homepage": "https://github.com/castrowithcee/callbell",
+  "repository": "https://github.com/castrowithcee/callbell",
+  "license": "MIT",
+  "keywords": ["web", "product", "architecture", "saas", "ui", "self-hosting"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Callbell Web",
+    "shortDescription": "Webprodukte fachlich klären und prüfen",
+    "longDescription": "Fachliche Capability für Websites, Web-Apps und SaaS-Produkte. Sie ergänzt Callbells Arbeitsloops um Produktprofil, Fähigkeiten, UI, Daten- und Berechtigungsgrenzen, Stack, Architektur, Sicherheit und Betrieb, besitzt aber keinen eigenen Intake, Backlog oder Task-Workflow. Vorhandene Stacks gewinnen; Infrastruktur entsteht nur aus belegten Anforderungen. Benötigt callbell-core und für vollständige Loops callbell.",
+    "developerName": "Callbell",
+    "category": "Productivity",
+    "capabilities": ["Instructions"],
+    "defaultPrompt": [
+      "Prüfe dieses Webprodukt fachlich auf Produktumfang, Fähigkeiten und Architektur.",
+      "Ergänze Callbell Shape um die relevanten Webproduktentscheidungen.",
+      "Prüfe diesen Web-Task auf UI-, Daten-, Sicherheits- und Betriebsgrenzen."
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "callbell-dev",
+  "version": "1.0.2",
+  "description": "Code-Pack für callbell: ein fauler Senior-Entwickler, der die einfachste funktionierende Lösung baut, plus ein Review-Skill, der sie prüft.",
+  "author": { "name": "Callbell" },
+  "homepage": "https://github.com/castrowithcee/callbell",
+  "repository": "https://github.com/castrowithcee/callbell",
+  "license": "MIT",
+  "keywords": ["code", "yagni", "minimalism", "review", "refactoring"],
+  "skills": "./skills/",
+  "hooks": "./hooks/callbell-dev-hooks.json",
+  "interface": {
+    "displayName": "Callbell Dev",
+    "shortDescription": "Der faulste Code, der wirklich funktioniert",
+    "longDescription": "Code-Pack für Callbell. Ein fauler Senior-Entwickler in drei Stufen (lite, full, ultra), der vor dem Bauen fragt, ob etwas überhaupt existieren muss, vor eigenem Code die Standardbibliothek und Plattform nutzt und eine ausführbare Prüfung hinterlässt. Ein Review-Skill prüft einen Diff oder ein ganzes Repo auf Over-Engineering. Benötigt callbell-core.",
+    "developerName": "Callbell",
+    "category": "Productivity",
+    "capabilities": ["Instructions", "Lifecycle hooks"],
+    "defaultPrompt": [
+      "Baue dies auf die faulste Weise, die funktioniert.",
+      "Prüfe diesen Diff auf Over-Engineering.",
+      "Prüfe, was ich aus diesem Repo löschen kann."
+    ]
+  }
+}

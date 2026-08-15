@@ -1,0 +1,7 @@
+interface:
+  display_name: "Callbell Doctor"
+  short_description: "Callbell-Projektzustand ohne Änderungen prüfen"
+  default_prompt: "Nutze $callbell-core-doctor, um den Callbell-Projektzustand ohne Änderungen zu prüfen."
+
+policy:
+  allow_implicit_invocation: false

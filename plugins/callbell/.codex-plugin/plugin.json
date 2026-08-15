@@ -1,0 +1,26 @@
+{
+  "name": "callbell",
+  "version": "2.0.5",
+  "description": "Täglicher Callbell-Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, freigegebene Arbeit autonom ausführen, Übergaben klären und gemeinsame Git-Worktrees verwalten.",
+  "author": { "name": "Callbell" },
+  "homepage": "https://github.com/castrowithcee/callbell",
+  "repository": "https://github.com/castrowithcee/callbell",
+  "license": "MIT",
+  "keywords": ["planning", "backlog", "orchestration", "subagents", "workflow", "worktree", "review", "automation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Callbell",
+    "shortDescription": "Arbeit durch sichere Loops und Worktrees führen",
+    "longDescription": "Der tägliche Callbell-Arbeitsloop. Ein einziger ausdrücklich aufgerufener Einstieg reift Ideen und Eingaben zu dokumentiertem Projektwissen, disponiert den Backlog, führt eine freigegebene Queue mit Worker- und Checker-Wellen aus, klärt menschliche Übergaben getrennt und verwaltet gemeinsame Git-Worktrees. Externe und irreversible Wirkungen bleiben ausgeschlossen. Benötigt callbell-core.",
+    "developerName": "Callbell",
+    "category": "Productivity",
+    "capabilities": ["Instructions", "Multi-agent orchestration"],
+    "defaultPrompt": [
+      "Arbeite diese Idee mit callbell shape aus.",
+      "Disponiere mit callbell backlog die nächste Arbeitsqueue.",
+      "Führe mit callbell run die freigegebenen Aufgaben dieses Projekts aus.",
+      "Klär mit callbell review die offenen menschlichen Übergaben.",
+      "Zeige mit callbell worktree die gemeinsamen Git-Worktrees dieses Projekts."
+    ]
+  }
+}

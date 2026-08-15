@@ -1,0 +1,7 @@
+interface:
+  display_name: "Callbell Telegram Ping"
+  short_description: "Telegram-Benachrichtigung beim Warten einrichten"
+  default_prompt: "Nutze $callbell-core-telegram-ping, um eine sichere Telegram-Benachrichtigung beim Warten einzurichten."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "callbell-core",
+  "displayName": "Callbell Core",
+  "version": "2.0.5",
+  "description": "Dauerhaft aktive Callbell-Infrastruktur: Sessionkontext, Normen, Scaffold, Backlog-Binding, Memory, Ablage, Import und sichere Verwaltungswerkzeuge.",
+  "author": { "name": "Callbell", "url": "https://github.com/castrowithcee" },
+  "homepage": "https://github.com/castrowithcee/callbell",
+  "repository": "https://github.com/castrowithcee/callbell",
+  "license": "MIT",
+  "keywords": ["context", "filing", "backlog", "memory", "scaffold", "productivity"],
+  "skills": "./skills/",
+  "hooks": "./hooks/callbell-hooks.json"
+}

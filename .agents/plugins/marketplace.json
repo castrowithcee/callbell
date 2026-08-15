@@ -1,0 +1,26 @@
+{
+  "name": "callbell",
+  "interface": { "displayName": "Callbell" },
+  "plugins": [
+    { "name": "callbell-core",
+      "source": { "source": "local", "path": "./plugins/callbell-core" },
+      "policy": { "installation": "INSTALLED_BY_DEFAULT", "authentication": "ON_INSTALL" },
+      "category": "Productivity",
+      "description": "Die dauerhaft aktive Infrastruktur zwischen Nutzer, Agent und Projekt: Sessionkontext, Normen, Scaffold, Backlog-Binding, Memory, Ablage, Import, Git und seltene Verwaltungswerkzeuge." },
+    { "name": "callbell",
+      "source": { "source": "local", "path": "./plugins/callbell" },
+      "policy": { "installation": "INSTALLED_BY_DEFAULT", "authentication": "ON_INSTALL" },
+      "category": "Productivity",
+      "description": "Der tägliche Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, eine freigegebene Queue autonom ausführen, menschliche Übergaben klären und gemeinsame Git-Worktrees verwalten. Benötigt callbell-core." },
+    { "name": "callbell-dev",
+      "source": { "source": "local", "path": "./plugins/callbell-dev" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity",
+      "description": "Code-Pack: die faulste Lösung, die wirklich funktioniert, in drei Stufen plus ein Review-Skill. Benötigt callbell-core." },
+    { "name": "callbell-web",
+      "source": { "source": "local", "path": "./plugins/callbell-web" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity",
+      "description": "Web-Capability: ergänzt Callbells Loops um Produktprofil, Fähigkeiten, UI, Daten, Architektur, Sicherheit und Betrieb, ohne einen eigenen Planungs- oder Task-Workflow. Benötigt callbell-core." }
+  ]
+}

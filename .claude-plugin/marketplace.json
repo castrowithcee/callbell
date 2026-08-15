@@ -1,0 +1,11 @@
+{
+  "name": "callbell",
+  "owner": { "name": "Callbell", "url": "https://github.com/castrowithcee" },
+  "description": "Callbell-Steuerung als Plugin-Ökosystem: eine dauerhaft aktive Infrastruktur, ein täglicher Arbeitsloop und optionale Fach-Packs.",
+  "plugins": [
+    { "name": "callbell-core", "source": "./plugins/callbell-core", "category": "productivity", "defaultEnabled": true, "description": "Die dauerhaft aktive Infrastruktur zwischen Nutzer, Agent und Projekt: Sessionkontext, Normen, Scaffold, Backlog-Binding, Memory, Ablage, Import, Git und seltene Verwaltungswerkzeuge." },
+    { "name": "callbell", "source": "./plugins/callbell", "category": "productivity", "defaultEnabled": true, "description": "Der tägliche Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, eine freigegebene Queue autonom ausführen, menschliche Übergaben klären und gemeinsame Git-Worktrees verwalten. Benötigt callbell-core." },
+    { "name": "callbell-dev", "source": "./plugins/callbell-dev", "category": "productivity", "description": "Code-Pack: die faulste Lösung, die wirklich funktioniert, in drei Stufen plus ein Review-Skill. Benötigt callbell-core." },
+    { "name": "callbell-web", "source": "./plugins/callbell-web", "category": "productivity", "description": "Web-Capability: ergänzt Callbells Loops um Produktprofil, Fähigkeiten, UI, Daten, Architektur, Sicherheit und Betrieb, ohne einen eigenen Planungs- oder Task-Workflow. Benötigt callbell-core." }
+  ]
+}

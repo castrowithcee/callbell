@@ -1,0 +1,4 @@
+interface:
+  display_name: "Callbell Git"
+  short_description: "Git-Zustand und bewusste Änderungen verwalten"
+  default_prompt: "Nutze $callbell-core-git, um den gewünschten Git-Vorgang sicher auszuführen."
