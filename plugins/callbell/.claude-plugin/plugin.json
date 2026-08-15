@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "callbell",
   "displayName": "Callbell",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Täglicher Callbell-Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, freigegebene Arbeit autonom ausführen, Übergaben klären und gemeinsame Git-Worktrees verwalten.",
   "author": { "name": "Callbell", "url": "https://github.com/castrowithcee" },
   "homepage": "https://github.com/castrowithcee/callbell",
