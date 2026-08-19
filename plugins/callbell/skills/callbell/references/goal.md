@@ -10,7 +10,7 @@ license: MIT
 # Zielbild klären
 
 Eine Idee, Vision oder Entwicklungsrichtung geht hinein. Ein mit dem Nutzer geklärtes Zielbild kommt
-heraus. Dieser Modus ist eine optionale Vorstufe zu `shape`, kein notwendiger Teil des normalen Loops.
+heraus. Dieser Modus ist optional und kein notwendiger Teil anderer Arbeitsschleifen.
 
 ## Harte Grenze
 
@@ -19,10 +19,8 @@ Datei, kein Planungssystem, keinen Task, keinen Status, kein Git-Objekt und kein
 auch keinen Entwurf oder Gesprächsmitschnitt ab. Beginne keine Umsetzung und bereite sie nicht durch
 verdeckte Änderungen vor.
 
-Halte das Ergebnis vollständig im Gespräch. Erst ein späterer ausdrücklicher Aufruf von `callbell shape`
-darf das bestätigte Zielbild gegen den Projektbestand ausarbeiten, dauerhaft dokumentieren und in
-Arbeitspakete schneiden. Rufe `shape` nie selbst auf und behandle Zustimmung zum Zielbild nicht als dessen
-Autorisierung.
+Halte das Ergebnis vollständig im Gespräch. Zustimmung zum Zielbild autorisiert weder dauerhafte
+Dokumentation noch Planung oder Umsetzung. Starte keinen weiteren Modus selbst.
 
 ## Eingang verstehen
 
@@ -82,5 +80,4 @@ Nach der Bestätigung gib ein kompaktes Goal-Briefing ausschließlich im Chat au
 - mögliche spätere Fähigkeiten mit ihren Einführungssignalen,
 - bestätigte Annahmen, Risiken und verbleibende offene Fragen.
 
-Schließe mit dem Hinweis, dass der Nutzer bei Ausarbeitungsabsicht `callbell shape` neu aufrufen kann. Lege
-nichts an und führe nichts aus.
+Schließe nach dem bestätigten Briefing. Lege nichts an und führe nichts aus.

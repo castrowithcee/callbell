@@ -1,7 +1,8 @@
 ---
 description: >
-  Autonomer Arbeitsloop für eine ausdrücklich gestartete Task-, Projekt- oder Backlog-Queue mit Harness,
-  Worker- und Checker-Wellen, lokaler Integration, Beweisen und gesicherten Stopbedingungen.
+  Serieller autonomer Arbeitslauf für höchstens fünf ausführbare Tasks: Ein Orchestrator disponiert,
+  überwacht und integriert, während Subagents genau einen Task zur Zeit umsetzen und nach spätestens zwei
+  erfolglosen Korrekturen gesichert an den Nutzer übergeben.
 type: playbook
 edit: locked
 license: MIT
@@ -9,17 +10,18 @@ license: MIT
 
 # Arbeit ausführen
 
-Aus einem vorbereiteten Arbeitsumfang entstehen integrierte, belegte Ergebnisse oder eine gesicherte
-Review-Schlange. Der Nutzer besitzt Start und Scope. Innerhalb dieses Rahmens besitzt der Hauptagent die
-Disposition, Delegation, Prüfung und Integration.
+Aus einem ausdrücklich gewählten Task-, Projekt- oder Backlog-Scope entstehen integrierte, belegte
+Ergebnisse oder konkrete menschliche Übergaben. Der initiale Agent ist der Orchestrator. Er hält Scope,
+Spine, Taskauswahl, Subagents, Beweise, Integration und Stopbedingungen; die Subagents setzen die fachliche
+Arbeit um.
 
-Der Aufruf autorisiert Subagents, lokale Änderungen, Prüfungen, isolierte Worktrees und lokale Commits im
-gewählten Scope. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an Dritte und keine
+Der Aufruf autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte Worktrees und
+lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an Dritte und keine
 sonstige externe oder irreversible Wirkung.
 
-## Harness festlegen
+## Laufvertrag festlegen
 
-Bestimme vor der ersten Änderung den vollständigen Laufvertrag:
+Bestimme vor der ersten Änderung:
 
 1. **Ziel:** Welcher beobachtbare Zustand beendet den Lauf erfolgreich?
 2. **Scope-in:** Welche Tasks, Repos, Pfade und Systeme gehören zum Aufruf?
@@ -32,145 +34,125 @@ Nutzer- und Projektvorgaben bestimmen das Planungssystem. Nur ohne andere Vorgab
 Callbell-Backlog. Ist ein vorgeschriebenes externes System nicht erreichbar, spiegle es nicht in lokale
 Dateien; stoppe vor schreibender Arbeit mit dem konkreten Hindernis.
 
-## Scope-in
+## Tasks auswählen
 
-Zum gewählten Lauf gehören:
+Ein Lauf bearbeitet höchstens fünf Tasks. Die Zahl der `next`-Tasks verändert diese Grenze nicht. Eine
+größere `next`-Menge bleibt in ihrer bestehenden Reihenfolge für spätere Läufe erhalten.
 
-- der ausdrücklich gewählte Task, das Projekt oder der Backlog und seine erfüllten Abhängigkeiten,
-- lokale Repository-Dateien und ausschließlich dafür nötige Zustandsänderungen,
-- lokale Tests, Builds, statische Prüfungen, Worktrees, Task-Branches und Commits,
-- Subagents für getrennte Bestandsaufnahme, Umsetzung, Ursachenklärung und Verifikation.
+1. Lies zuerst nur Roster beziehungsweise externe Metadaten des gewählten Scopes. Ermittle Status,
+   Kurzstand, Reihenfolge, Abhängigkeiten und Besitzsignale. Bei einem ausdrücklich gewählten einzelnen
+   Task lies dessen aktuellen Datensatz direkt.
+2. Nimm zuerst ausführbare `next`-Tasks in der Reihenfolge des Spine. Sind weniger als fünf vorhanden,
+   ergänze den Lauf selbstständig mit fachlich passenden `ready`-Tasks desselben Scopes. Wähle nach
+   erfüllbaren Abhängigkeiten, fachlichem Nutzen, früher Risikoklärung und sinnvoller Integration.
+3. Ein ausgewählter `ready`-Task wechselt vor seiner Beanspruchung über `next`. `ready` und `next` sind
+   exklusive Status; `next` setzt vollständige Ausführungsreife voraus.
+4. Lies nur die ausgewählten Tasks und ihre echten Blocker vollständig. Öffne Kommentare oder Historie nur
+   bei einem Widerspruch, fehlender entscheidungsrelevanter Begründung oder ausdrücklichem Verweis des
+   aktuellen Datensatzes.
+5. Prüfe jeden Task unmittelbar vor der Beanspruchung erneut. Hat sein Vertrag eine offene Frage zu
+   Ergebnis, Scope, Vorgehen oder Abnahme, setze ihn auf `draft`, informiere den Nutzer konkret und führe
+   ihn nicht aus. Eine technische Schwierigkeit allein ist keine offene Vertragsfrage.
+6. Verändere keinen `in-progress`-Task mit einem laufenden oder unbekannten Subagent. Kläre zuerst dessen
+   Eigentümer und Arbeitsstand.
+7. Prüfe bei Git Root, Branch, Upstream, Worktrees und vollständigen Status. Schreibende Arbeit beginnt nur
+   auf einem sauberen, seit dem Preflight unveränderten Steuerbranch. Wende vor dem ersten schreibenden
+   Git-Schritt den vom Einstieg genannten Git-Ablauf an.
 
-## Scope-out
+Plane die Auswahl nicht als unveränderlichen Batch. Nach jedem abgeschlossenen oder übergebenen Task
+bewertet der Orchestrator Reihenfolge, Abhängigkeiten und verbleibende Laufkapazität neu.
 
-Außerhalb des gewählten Laufs bleiben immer:
+## Genau einen Task ausführen
 
-- neue Produktziele, Scope-Erweiterungen und nicht belegte Annahmen über die Nutzerabsicht,
-- Push, Publish, Deployment, produktive Infrastruktur und externe Kommunikation,
-- Secrets, Zugangsdaten, irreversible Löschungen und sonstige hochriskante Aktionen,
-- Entscheidungen über Produktumfang, Risikoakzeptanz und menschliche oder fachliche Abnahme.
+Es ist immer höchstens ein Task `in-progress`. Beanspruche ihn unmittelbar vor der ersten schreibenden
+Ausführung im Spine. Kein Subagent verändert Spine oder Branchverwaltung, erstellt Commits oder startet
+eigene Subagents.
 
-Eine technische Schwierigkeit erweitert den Scope nicht. Sichere den Stand und übergib, wenn der Auftrag
-ohne eine ausgeschlossene Handlung nicht fortgesetzt werden kann.
+### Subagents beauftragen
 
-## Preflight
+Der Orchestrator gibt jedem Subagent genau einen abgegrenzten Auftrag mit Task-ID und Titel, Arbeitsort,
+erlaubten Zielen, Scope-out, Abnahmekriterien, Prüfungen und Rückgabeformat. Er implementiert die fachliche
+Lösung nicht selbst. Kleine Status-, Integrations- und Verifikationsschritte bleiben bei ihm.
 
-1. Lies zuerst nur Roster beziehungsweise externe Metadaten des gewählten Scopes. Ermittle daraus Status,
-   Kurzstand, Reihenfolge und Besitzsignale, soweit das System sie anbietet, und bilde eine enge
-   Kandidatenmenge für die nächste Welle. Kläre Abhängigkeiten aus Roster, Beziehungsfeldern oder den aktuellen
-   Datensätzen dieser Kandidaten und lies danach nur gewählte Tasks und ihre echten Blocker vollständig. Bei
-   einem ausdrücklich gewählten einzelnen Task lies dessen aktuellen Datensatz direkt; lade weder andere
-   offene Tasks noch Historie vorsorglich.
-2. Folge bei einem externen System der Lesepolitik seines Bindings. Öffne Kommentare oder andere Historie
-   nur bei einem Widerspruch, fehlender entscheidungsrelevanter Begründung oder einem ausdrücklichen Verweis
-   des aktuellen Datensatzes. Historie ersetzt nie den eigenständig ausführbaren Ist-Stand.
-3. Wähle bei einem Backlog- oder Projektlauf nur `next`. Ein ausdrücklich genannter `ready`-Task gilt durch
-   diesen Nutzeraufruf als freigegeben und wechselt vor der Beanspruchung über `next`. Weitere Übergänge
-   folgen dem Statusmodell des maßgeblichen Planungssystems.
-4. Verändere keinen `in-progress`-Task mit einem laufenden oder unbekannten Worker. Kläre zuerst dessen Eigentümer
-   und Arbeitsstand.
-5. Prüfe bei Git Root, Branch, Upstream, Worktrees und vollständigen Status. Schreibende Arbeit beginnt nur
-   auf einem sauberen, seit dem Preflight unveränderten Steuerbranch.
-6. Wende vor dem ersten schreibenden Git-Schritt den vom Einstieg genannten Git-Ablauf an.
+Normalerweise setzt ein Subagent den Task um. Braucht derselbe Task legitim mehrere getrennte Rollen oder
+Zielbereiche, darf der Orchestrator zwei oder mehr Subagents einsetzen. Ihre Aufträge müssen sich
+nachweislich ergänzen, dürfen keine konkurrierenden Lösungen bauen und bleiben gemeinsam im Fehlerbudget
+dieses einen Tasks. Ein weiterer Task beginnt erst, wenn der aktive Task abgeschlossen oder gesichert
+übergeben ist.
 
-Beanspruche jedes Paket unmittelbar vor seiner ersten schreibenden Ausführung im Spine. Im lokalen Backlog
-ist das `in-progress`; extern gilt der im Binding festgelegte bedeutungsgleiche Status. Aktualisiere keinen
-Status eines Pakets, das noch nicht Teil der nächsten Welle ist.
+Sende nach dem erfolgreichen Start genau eine knappe Karte:
 
-## Den Arbeitsloop führen
-
-Führe bis zu einer Stopbedingung dieselbe Schleife aus:
-
-### 1. Nächste Welle wählen
-
-- Wähle nur ausführbare Arbeit mit erfüllten Abhängigkeiten.
-- Parallelisiere nur getrennte Zielbereiche mit sicherer Isolation. Serialisiere jede mögliche
-  Überschneidung.
-- Plane nur die nächste Welle. Mehr Worker sind kein Ziel.
-- Leite aus der Größe der `next`-Queue keine Parallelität ab. Der vorbereitete Horizont darf vollständig
-  seriell ausgeführt werden.
-
-### 2. Rollen besetzen
-
-Der Hauptagent bleibt Eigentümer von Scope, Spine, Workersteuerung, Integration und Abschluss. Gib jedem
-Worker genau ein Arbeitspaket mit Pfad oder ID, Arbeitsort, erlaubten Zielen, Abnahmekriterien, Prüfungen und
-Rückgabeformat. Worker verändern weder Spine noch Branchverwaltung, committen nicht und spawnen keine
-eigenen Subagents.
-
-Nutze Subagents nur, wenn Trennung einen messbaren Vorteil bringt:
-
-- Ein Worker setzt ein hinreichend eigenständiges Paket um.
-- Ein unabhängiger Checker prüft bei mittlerem oder hohem Risiko den Diff und die Beweise, ohne die
-  Rechtfertigung des Workers als Wahrheit zu übernehmen.
-- Kleine Zustands- und Integrationsschritte erledigt der Hauptagent selbst.
-- Fehlen Subagents, führe höchstens einen sicher seriellen Task selbst aus und benenne diese Abweichung im
-  Abschluss. Simuliere keine unabhängige Prüfung.
-
-Sende unmittelbar nach dem erfolgreichen Start der Worker genau eine gerenderte Markdown-Karte für die
-Welle:
-
-> **Welle: 2 von 4**
->
 > **Aufgabe:** #84 - Dateizugriff auf SQL umstellen
 >
-> **Sub-Agent:** gestartet mit terra
+> **Subagents:** terra · sol
 
-Verwende ID und Titel aus dem Spine. Nenne den tatsächlich gewählten oder geerbten Modellnamen in seiner
-kurzen, erkennbaren Form, etwa `terra`, `opus`, `sonnet` oder `sol`; ist er dem Hauptagenten nicht bekannt,
-schreibe `nicht ausgewiesen`, statt ihn zu erraten. Wiederhole bei mehreren Workern das Paar aus Aufgabe und
-Sub-Agent innerhalb derselben Karte. Arbeitet die Welle ohne Subagent, schreibe `Sub-Agent: keiner;
-Ausführung durch Hauptagent`.
+Verwende ID und Titel aus dem Spine. Nenne nur tatsächlich gewählte oder geerbte Modellnamen in kurzer
+Form; ist ein Modell nicht bekannt, schreibe `nicht ausgewiesen`. Fehlen die benötigten Subagents, stoppe
+vor der Umsetzung und melde diese Voraussetzung. Der Orchestrator ersetzt sie nicht als stiller Subagent.
 
-### 3. Beobachten und korrigieren
+### Überwachen
 
-Prüfe Rückgaben gegen den tatsächlichen Diff, die Umwelt und die vereinbarten Beweise. Eine Erfolgsmeldung
-des Workers ist kein Abschlussbeleg. Klassifiziere einen Fehlschlag vor jedem Follow-up:
+Beobachte Arbeitsstand und Rückgaben gegen Taskvertrag, tatsächlichen Diff und vereinbarte Beweise. Greife
+ein, wenn ein Subagent den Scope verlässt, ohne Fortschritt festhängt oder eine ausgeschlossene Wirkung
+vorbereitet. Begrenze oder stoppe seinen Auftrag, statt durch weitere unspezifische Prompts Token zu
+verbrauchen.
 
-- **Ausführungsfehler:** Ein Tippfehler, falscher Pfad, Quoting oder ungeeigneter Flag hat die Methode noch
-  nicht geprüft. Korrigiere ihn direkt und führe den beabsichtigten Schritt erneut aus. Bleibt derselbe
-  Fehler nach der Korrektur bestehen, behandle ihn nicht durch Umformulieren als immer neuen Fehler.
-- **Fehlende Voraussetzung:** Runtime, Werkzeug, Berechtigung, Ressource oder Nutzereingabe fehlen. Baue
-  keine materiell andere Ersatzlösung und installiere nichts außerhalb des Laufvertrags. Sichere den Task
-  sofort für `review` oder `waiting`; ein neuer Worker ist kein Lösungsversuch.
-- **Lösungsfehler:** Der Ansatz wurde tatsächlich ausgeführt, erfüllt aber ein Abnahmekriterium nicht. Gib
-  genau ein enges Follow-up, wenn eine konkrete Diagnose oder neue Evidenz eine bestimmte Korrektur trägt.
-  Fehlt sie oder scheitert die Korrektur, ist das Fehlerbudget dieses Kriteriums ausgeschöpft.
+Eine Erfolgsmeldung des Subagents ist kein Abschlussbeleg. Der Orchestrator prüft Ergebnis, Diff und
+Beweise selbst und klassifiziert jeden Fehlschlag:
 
-Nach ausgeschöpftem Budget übernimmt kein Ersatz-Worker denselben Lösungsauftrag. Ein unabhängiger Checker
-darf vorhandene Beweise prüfen, aber die Umsetzung nicht als neue Runde übernehmen. Sichere die Übergabe;
-andere unabhängige Tasks dürfen weiterlaufen.
+- **Ausführungsfehler:** Ein falscher Pfad, Tippfehler, Quoting oder ungeeigneter Flag hat die Lösung noch
+  nicht geprüft. Korrigiere den Aufruf einmal gezielt. Wiederholt sich derselbe Fehler, behandle ihn als
+  fehlende Voraussetzung oder Lösungsfehler, nicht als unbegrenzte neue Runde.
+- **Fehlende Voraussetzung:** Runtime, Werkzeug, Berechtigung, Ressource oder Nutzereingabe fehlen. Starte
+  keinen Ersatzansatz. Sichere den Task unmittelbar für `review` oder `waiting`.
+- **Lösungsfehler:** Der Ansatz wurde ausgeführt, erfüllt aber ein Abnahmekriterium nicht. Leite aus Diagnose
+  oder neuer Evidenz eine konkrete Korrektur ab.
 
-### 4. Integrieren und abschließen
+### Höchstens zwei Korrekturen
 
-Integriere einzeln in Abhängigkeitsreihenfolge und führe gemeinsame Prüfungen am Wellenende aus. Löse
-fachlich offene Konflikte nicht automatisch. Pflege Task, Abschlussbericht und Spine nach dem maßgeblichen
-Vertrag. Setze einen Task erst auf `done`, wenn alle Kriterien auf dem Steuerbranch belegt sind.
+Der initiale Umsetzungsversuch zählt nicht als Korrektur. Danach sind pro Task insgesamt höchstens zwei
+gezielte Korrekturversuche erlaubt, auch wenn mehrere Abnahmekriterien betroffen sind. Jede Korrektur braucht
+neue Evidenz und eine daraus abgeleitete Änderung; bloßes Umformulieren, ein anderer Subagent oder eine neue
+Session setzt den Zähler nicht zurück.
 
-Muss der Nutzer entscheiden, prüfen oder handeln, setze den Task auf `review`. Halte die dort verlangte
-aktuelle Übergabe fest. Ein schmutziger Worktree ist keine Übergabe.
+Ist das Kriterium nach der zweiten Korrektur weiterhin nicht erfüllt:
 
-Verhindert eine externe Voraussetzung, Ressource oder Umgebung die Fortsetzung, setze den Task nach dem
-maßgeblichen Statusmodell auf `waiting`. Eine unerfüllte Abhängigkeit zu einem anderen Task verändert den
-Status nicht; die Reihenfolge im Spine genügt.
+1. Stoppe jede weitere Umsetzung dieses Tasks.
+2. Sichere den aktuellen Diff, die belegte Ursache, die zwei geprüften Korrekturen und die noch verletzte
+   Abnahme kompakt im Task.
+3. Setze den Task auf `review` und formuliere die konkrete Nutzerentscheidung zu Voraussetzung,
+   Ansatzwechsel, Scope oder Zurückstellung.
+4. Starte keinen Checker oder Ersatz-Subagent als verdeckte dritte Korrekturrunde.
 
-Ist das Fehlerbudget ausgeschöpft, setze den Task auf `review`. Formuliere daraus eine konkrete Entscheidung
-über Voraussetzung, Ansatzwechsel, Scope oder Zurückstellung. Erzeuge kein Versuchsprotokoll.
+Hängen verbleibende Tasks von diesem Ergebnis ab, stoppe den gesamten Lauf und übergib dem Nutzer die
+Entscheidung. Nur nachweislich unabhängige Tasks dürfen innerhalb der verbleibenden Fünfergrenze seriell
+weiterlaufen.
 
-Die Wellenkarte ist im Normalverlauf die einzige sichtbare Zwischenmeldung. Nicht blockierende Fragen
-kommen in die Review-Schlange, während unabhängige Arbeit weiterläuft.
+## Integrieren und abschließen
+
+Integriere die Arbeit des aktiven Tasks, führe seine gemeinsamen Prüfungen aus und pflege Task,
+Abschlussbericht und Spine nach dem maßgeblichen Vertrag. Setze ihn erst auf `done`, wenn alle Kriterien auf
+dem Steuerbranch belegt sind.
+
+Muss der Nutzer entscheiden, prüfen oder handeln, setze den Task auf `review`. Verhindert eine externe
+Voraussetzung, Ressource oder Umgebung die Fortsetzung, setze ihn nach dem maßgeblichen Statusmodell auf
+`waiting`. Eine unerfüllte interne Task-Abhängigkeit verändert den Status nicht; die Reihenfolge im Spine
+genügt.
+
+Beginne erst danach mit dem nächsten ausgewählten Task. Wiederhole Auswahl, Umsetzung und Integration, bis
+fünf Tasks bearbeitet sind oder eine Stopbedingung eintritt.
 
 ## Stopbedingungen
 
 Beende den Lauf, sobald eine dieser Bedingungen gilt:
 
+- Fünf Tasks wurden abgeschlossen oder gesichert übergeben.
 - Der gewählte Scope ist vollständig und belegt abgeschlossen.
-- Der gewählte `next`-Horizont ist ausgeschöpft; außerhalb davon verbleibendes `ready` wird nicht still
-  nachgezogen.
-- Es bleibt nur Arbeit mit unerfüllten Abhängigkeiten, `waiting` oder menschlicher Übergabe.
+- Es gibt im Scope weder ausführbares `next` noch ausführbares `ready`.
+- Ein fehlgeschlagener Task blockiert die verbleibende Arbeit.
+- Es bleibt nur Arbeit mit unerfüllten Abhängigkeiten, `waiting`, `draft` oder menschlicher Übergabe.
 - Eine Scope-, Risiko-, Außenwirkungs- oder Berechtigungsgrenze ist erreicht.
 - Der Steuerbranch wurde seit dem Preflight fremd verändert.
-- Das Fehlerbudget eines verbleibenden Tasks ist ausgeschöpft.
 
-Sichere vor dem Ende Spine, Abschlussberichte und erlaubte lokale Commits. Bei offenen Übergaben melde nur
-deren Anzahl und verweise auf `callbell review`. Ohne Übergaben schließe mit Ergebnis und maßgeblichen
-Beweisen knapp ab. Pushe nichts.
+Sichere vor dem Ende Spine, Abschlussberichte und erlaubte lokale Commits. Berichte Ergebnis, maßgebliche
+Beweise und konkrete menschliche Übergaben knapp. Pushe nichts.

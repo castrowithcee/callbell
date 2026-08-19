@@ -12,10 +12,9 @@ license: MIT
 Aus einem vorhandenen Arbeitsvorrat entsteht eine verständliche, ausführbare und bewusst geordnete Queue.
 Dieser Modus verändert Planung und Taskverträge, führt aber keine fachliche Arbeit aus.
 
-`shape` darf für seinen gerade ausgearbeiteten Scope bereits einen begrenzten `next`-Horizont bilden.
-Verwende `backlog`, wenn Drafts reifen, ruhende Arbeit geprüft, mehrere Scopes gegeneinander priorisiert
-oder eine bestehende Queue bewusst geändert werden soll. Der Modus ist keine Pflichtschleuse zwischen
-`shape` und `run`.
+Verwende diesen Modus, wenn Drafts reifen, ruhende Arbeit geprüft, mehrere Scopes gegeneinander priorisiert
+oder eine bestehende `next`-Menge bewusst geändert werden soll. Er ist keine Voraussetzung für die
+Ausführung bereits vollständig geklärter Arbeit.
 
 ## Bestand bilden
 
@@ -33,8 +32,8 @@ Lesen aller Task-Dateien ist dennoch kein Review-Verfahren.
 
 Arbeite in dieser Reihenfolge, soweit der gewählte Scope die Gruppe enthält:
 
-1. **Menschliche Gates sichtbar machen.** Verweise für echte `review`-Übergaben auf `callbell review`; kläre
-   sie in diesem Modus nur, wenn der Nutzer das ausdrücklich in denselben Backlog-Aufruf einbezieht.
+1. **Menschliche Gates sichtbar machen.** Kläre echte `review`-Übergaben in diesem Modus nur, wenn der Nutzer
+   das ausdrücklich in denselben Aufruf einbezieht.
 2. **Drafts reifen.** Stelle nur entscheidungsrelevante Fragen. Arbeite Antworten am fachlich passenden Ort
    in den aktuellen Taskvertrag ein und entferne überholte Varianten. Setze ihn nach dem Statusmodell des
    maßgeblichen Planungssystems erst auf `ready`, wenn keine bekannte Vertragsfrage bleibt.
@@ -52,8 +51,7 @@ Arbeite in dieser Reihenfolge, soweit der gewählte Scope die Gruppe enthält:
   eigenständige Pakete, wenn ihr Vertrag verstanden ist; halte spätere Horizonte kompakt im Projektwissen.
 - Setze nichts auf `in-progress` oder `done` und beginne keine Implementierung.
 - Eine bloße Empfehlung setzt keinen Task auf `next`.
-- Die automatische Shape-Grenze von fünf Tasks begrenzt keine ausdrücklich vom Nutzer zusammengestellte
-  Queue.
+- Eine ausdrücklich vom Nutzer zusammengestellte `next`-Menge hat keine harte Größenbegrenzung.
 - Bewahre keine Review- oder Planungshistorie im Task. Er bleibt der konsolidierte aktuelle Stand.
 
 Beende mit der Anzahl der weiterhin `draft`, `waiting`, `review` und neu oder weiterhin `next`

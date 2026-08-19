@@ -1,0 +1,7 @@
+interface:
+  display_name: "Callbell Help"
+  short_description: "Zentrale Karte aller Callbell-Plugins zeigen"
+  default_prompt: "Nutze $callbell-help, um die zentrale Karte aller Callbell-Plugins und Aufrufe zu zeigen."
+
+policy:
+  allow_implicit_invocation: false

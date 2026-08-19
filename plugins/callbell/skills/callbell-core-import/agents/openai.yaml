@@ -1,0 +1,4 @@
+interface:
+  display_name: "Callbell Core Import"
+  short_description: "Rohmaterial sicher in dauerhaften Inhalt überführen"
+  default_prompt: "Nutze $callbell-core-import, um das Rohmaterial aus der Import-Zone sicher zu verarbeiten."

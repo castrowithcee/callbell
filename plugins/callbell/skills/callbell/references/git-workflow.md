@@ -9,15 +9,14 @@ license: MIT
 
 # Git-Ablauf von Callbell Run
 
-Lies diese Referenz nur bei schreibender Arbeit in einem Git-Repo. Die Git-Norm des Callbell-Cores gilt
-zusätzlich.
+Lies diese Referenz nur bei schreibender Arbeit in einem Git-Repo. Callbells Git-Norm gilt zusätzlich.
 
 ## Isolation entscheiden
 
 Prüfe vor der Beanspruchung, ob die Arbeit einen eigenen Worktree braucht. Er ist erforderlich, wenn
 
 - ein lokaler Callbell-Task ausgeführt wird,
-- mehrere schreibende Tasks oder Agenten parallel arbeiten,
+- mehrere Subagents innerhalb desselben Tasks parallel schreiben,
 - der vorhandene Arbeitsbaum fremde oder nicht zuordenbare Änderungen enthält,
 - ein Arbeitsstand für `review` oder eine spätere Wiederaufnahme getrennt erhalten bleiben muss oder
 - Nutzer- beziehungsweise Projektvorgaben ihn verlangen.
@@ -32,10 +31,10 @@ zentralen Pfad-, Benennungs- und Sicherheitsvertrag. Die Laufautorisierung erset
 - Committe die gesammelte Beanspruchung auf dem sauberen Steuerbranch, bevor Task-Branches entstehen.
 - Ein lokaler Task mit sechsstelliger ID nutzt `callbell/task-<id>-<slug>`; `<slug>` stammt aus dem
   Task-Dateinamen.
-- Ohne sichere Isolation läuft höchstens ein schreibender Worker. Trennst du fremde Änderungen nicht sicher,
+- Ohne sichere Isolation läuft höchstens ein schreibender Subagent. Trennst du fremde Änderungen nicht sicher,
   übergib den Task mit Befund an den Nutzer.
-- Der Worker committet nicht. Der Hauptagent liest den vollständigen Diff, prüft die Beweise und erstellt
-  den Task-Commit nach der vorhandenen Nachrichtenkonvention.
+- Der Subagent erstellt keine Commits. Der Orchestrator liest den vollständigen Diff, prüft die Beweise und
+  erstellt den Task-Commit nach der vorhandenen Nachrichtenkonvention.
 
 ## Integrieren und übergeben
 
@@ -51,4 +50,4 @@ zentralen Pfad-, Benennungs- und Sicherheitsvertrag. Die Laufautorisierung erset
 
 Erstelle lokale Commits nur aus vollständig gelesenen Diffs und berichte Nachrichten und IDs nach dem Lauf.
 Kein Push, Force-Push, automatischer Stash oder fremdes Staging. Eine Beanspruchung ohne Hostsignal beweist
-nicht, dass ein früherer Worker beendet ist.
+nicht, dass ein früherer Subagent beendet ist.

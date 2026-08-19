@@ -22,7 +22,7 @@ Vorrang. Erzeuge weder ein lokales Ersatz- noch ein Spiegel-Backlog. Ist das ma�
 erreichbar, darf die Ausarbeitung im Gespräch fortfahren; melde Arbeitspakete aber nicht als dort angelegt.
 
 Nur ohne andere Vorgabe gilt der lokale Callbell-Backlog. Fehlt dafür das Scaffold, verweise auf
-`callbell-core`, bevor du unter `__callbell__/` schreibst.
+`callbell setup`, bevor du unter `__callbell__/` schreibst.
 
 Der Nutzer hat `shape` bewusst gestartet. Damit steht die Ausarbeitungsabsicht fest, nicht schon die
 inhaltliche Richtung. Stelle nur Fragen, deren Antwort Ergebnis, Scope, dauerhafte Dokumentation,
@@ -137,8 +137,8 @@ Pflege am Ende des Zuschnitts die maßgebliche `next`-Queue mit:
 - Der Nutzer darf die Queue ausdrücklich ändern oder auf mehr als fünf Pakete erweitern. Die Grenze gilt
   nur für die automatische Disposition durch `shape`.
 
-`next` bereitet den kommenden Horizont vor, autorisiert aber keine Ausführung. Diese beginnt ausschließlich
-durch einen späteren ausdrücklichen Aufruf von `callbell run`.
+`next` bereitet den kommenden Horizont vor, autorisiert aber keine Ausführung. Dieser Modus führt keinen
+Task aus.
 
 ## Analyse bei Bedarf delegieren
 
@@ -155,7 +155,6 @@ Planungssystem stehen und jede bekannte offene Vertragsfrage sichtbar ist. Nenne
 - welche Projektdokumentation entstand oder aktualisiert wurde,
 - welche Tasks `draft` und welche `ready` sind,
 - welche Tasks neu oder weiterhin `next` sind,
-- welche Entscheidung noch fehlt,
-- dass `callbell backlog` nur für eine bewusste Änderung oder weitergehende Disposition nötig ist.
+- welche Entscheidung noch fehlt.
 
 Führe keinen Task aus.

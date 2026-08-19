@@ -25,9 +25,8 @@ Umsetzung, Worker, Integration, externe Wirkungen und Pushes bleiben außerhalb 
 
 1. Bestimme Planungssystem und ausdrücklich gewählten Scope.
 2. Lies zunächst nur Roster beziehungsweise externe Metadaten und bilde daraus die Schlange aus `review`
-   und ausdrücklich offenen Nutzerentscheidungen, Prüfungen oder Handlungen. Draft-Reifung gehört in
-   `callbell backlog`. Verändere keinen Task
-   mit laufendem Worker.
+   und ausdrücklich offenen Nutzerentscheidungen, Prüfungen oder Handlungen. Reife keine Drafts und
+   verändere keinen Task mit laufendem Worker.
 3. Lies nur die Tasks der gebildeten Schlange vollständig. Sammle aus ihrem aktuellen Datensatz Ist-Stand,
    Belege, offene Frage, Empfehlung und Folgen. Öffne Historie nur bei einem Widerspruch, fehlender
    entscheidungsrelevanter Begründung oder ausdrücklichem Verweis und frage nichts erneut, was bereits in den
@@ -64,14 +63,14 @@ Antwort: 1, 2, 3 oder Freitext.
 
 - Schreibe die Entscheidung an den vorhandenen fachlichen Ort im Task, nicht in ein separates Protokoll.
   Pflege Task und Übergabe als aktuellen Snapshot nach dem maßgeblichen Vertrag.
-- Wähle den nächsten Status nach dem maßgeblichen Vertrag: `next`, wenn ein neuer `callbell run` fortfahren
-  kann, `review`, solange eine Nutzerhandlung offen bleibt, `waiting` bei einer externen Voraussetzung,
+- Wähle den nächsten Status nach dem maßgeblichen Vertrag: `next`, wenn die Aufgabe nach einem neuen
+  ausdrücklichen Lauf fortgesetzt werden kann, `review`, solange eine Nutzerhandlung offen bleibt,
+  `waiting` bei einer externen Voraussetzung,
   `draft` bei einer weiterhin offenen Vertragsfrage oder `done`, wenn die menschliche Abnahme den bereits
   belegten Abschluss vervollständigt. Schließe und archiviere ihn dann im selben Schritt nach den Regeln des
   maßgeblichen Planungssystems.
 - Aktualisiere nach jeder vollständig geklärten Aufgabe Spine und Zeitstempel nach dem maßgeblichen System.
-- Eine Antwort autorisiert keine Ausführungsarbeit. Diese beginnt nur durch einen neuen Aufruf von
-  `callbell run`.
+- Eine Antwort autorisiert keine Ausführungsarbeit. Dafür ist ein neuer ausdrücklicher Lauf nötig.
 
 ## Vollständig beenden
 
