@@ -1,6 +1,6 @@
 {
   "name": "callbell-core",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Dauerhaft aktive Callbell-Infrastruktur: Sessionkontext, Normen, Scaffold, Backlog-Binding, Memory, Ablage, Import und sichere Verwaltungswerkzeuge.",
   "author": { "name": "Callbell" },
   "homepage": "https://github.com/castrowithcee/callbell",
