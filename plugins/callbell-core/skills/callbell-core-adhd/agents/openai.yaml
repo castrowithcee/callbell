@@ -1,7 +1,0 @@
-interface:
-  display_name: "Callbell ADHD"
-  short_description: "Antworten handlungsfreundlich für ADHD formen"
-  default_prompt: "Nutze $callbell-core-adhd, um die Antworten dieser Session handlungsfreundlich für ADHD zu formen."
-
-policy:
-  allow_implicit_invocation: false

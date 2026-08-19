@@ -1,4 +1,0 @@
-interface:
-  display_name: "Callbell Filing"
-  short_description: "Inhaltsdateien sicher im Projekt einordnen"
-  default_prompt: "Nutze $callbell-core-filing, um diese Inhaltsdatei passend im Projekt einzuordnen."

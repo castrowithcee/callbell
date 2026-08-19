@@ -1,7 +1,0 @@
-interface:
-  display_name: "Callbell Statusline"
-  short_description: "Statusline für Claude oder Codex konfigurieren"
-  default_prompt: "Nutze $callbell-core-statusline, um die Statusline des aktuellen Hosts zu konfigurieren."
-
-policy:
-  allow_implicit_invocation: false

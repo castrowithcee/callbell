@@ -1,37 +1,32 @@
 # Callbell
 
-Callbell klärt neue Ziele und führt Ideen sowie vorhandene Arbeit durch wiederholbare Schleifen bis zum
-belegten Ergebnis. Eine dauerhaft aktive Infrastruktur hält Kontext, Normen und Projektzustand zusammen.
-Core und täglicher Arbeitsloop bilden die Grundausstattung; fachliche Methoden bleiben bewusst
-installierbare Packs.
+Callbell hält Kontext, Regeln und Projektzustand zusammen und führt Ideen sowie vorhandene Arbeit durch
+ausdrücklich gestartete Schleifen bis zum belegten Ergebnis. Die gemeinsame Infrastruktur und der
+Arbeitsloop leben in einem Plugin; fachliche Methoden bleiben bewusst installierbare Packs.
 
 ## Das Modell
 
 ```text
 Nutzerprompt + AGENTS.md + SessionStart
                   ↓
-          callbell-core
-   Kontext, Regeln, Scaffold, Spine
-                  ↓
-             callbell
-       Goal? → Shape → Run ↔ Review
-                  ↕
-               Backlog
+              callbell
+      Kontext · Regeln · Scaffold
+      Setup · Goal · Shape · Backlog
+      Run · Review · Worktree
                   ↓
          fachliche Packs
-       Dev · Web · weitere
+             Dev · Web
 ```
 
 | Baustein | Aufgabe | Aktivierung |
 |---|---|---|
-| `callbell-core` | Passive Infrastruktur, Projektzustand und sichere Verwaltungswerkzeuge | standardmäßig aktiv |
-| `callbell` | Täglicher Arbeitsloop von der Idee bis zur autonomen Ausführung | standardmäßig installiert, bewusst aufgerufen |
-| Fach-Packs | Methode für Code, Server, Webprodukte und weitere Domänen | bewusst installiert, bei Relevanz geladen |
-| `__callbell__/` | Backlog-Binding, Memory, Zonen und Update-Stand des Projekts | per `callbell-core` |
+| `callbell` | Passive Infrastruktur, Projektzustand, Verwaltungswerkzeuge und täglicher Arbeitsloop | standardmäßig installiert; Schleifen und Werkzeuge nur ausdrücklich |
+| Fach-Packs | Methode für Code, Webprodukte und weitere Domänen | bewusst installiert, bei Relevanz geladen |
+| `__callbell__/` | Backlog-Binding, Memory, Zonen und Update-Stand des Projekts | per `callbell setup` |
 
-Nur der Core läuft passiv. Der tägliche Arbeitsloop ist als Grundausstattung installiert, beginnt aber wie
-alle Schleifen und systemverändernden Werkzeuge nur durch einen Nutzeraufruf. Fach-Packs liefern Methode
-und Prüfperspektive; sie besitzen keinen konkurrierenden Backlog.
+Sessionkontext und Regeln wirken passiv. Einrichtung, systemverändernde Werkzeuge und der tägliche
+Arbeitsloop beginnen ausschließlich durch einen Nutzeraufruf. Fach-Packs liefern Methode und
+Prüfperspektive; sie besitzen keinen konkurrierenden Backlog.
 
 ## Schnellstart
 
@@ -45,53 +40,45 @@ claude plugin marketplace add castrowithcee/callbell
 claude plugin install callbell@callbell
 ```
 
-`callbell` installiert und aktiviert `callbell-core` als Abhängigkeit. Der nächste Sessionstart lädt den
-Callbell-Kontext automatisch.
-
 ### Codex
 
 ```text
 codex plugin marketplace add castrowithcee/callbell
 ```
 
-Der Marketplace markiert `callbell-core` und `callbell` als standardmäßig installiert.
-
-Öffne anschließend unter Codex `/hooks`, prüfe die Callbell-Core-Handler und genehmige sie. Codex führt
-Plugin-Hooks erst nach dieser Trust-Freigabe aus; nach einer geänderten Hook-Definition kann eine erneute
-Freigabe nötig sein. Ohne sie bleiben die Skills verfügbar, aber SessionStart-Normen, Projektkontext und
-Update-Prüfungen fehlen.
+Der Marketplace installiert `callbell` standardmäßig. Öffne anschließend unter Codex `/hooks`, prüfe die
+Callbell-Handler und genehmige sie. Codex führt Plugin-Hooks erst nach dieser Trust-Freigabe aus; nach einer
+geänderten Hook-Definition kann eine erneute Freigabe nötig sein. Ohne sie bleiben die Skills verfügbar,
+aber SessionStart-Normen, Projektkontext und Update-Prüfungen fehlen.
 
 Richte danach den gewünschten Arbeitsordner ein:
 
 ```text
-Claude: /callbell-core setup
-Codex:  $callbell-core setup
+Claude: /callbell setup
+Codex:  $callbell setup
 ```
 
-Der ausschließlich vom Nutzer gestartete Core-Einstieg prüft Node, ergänzt nur Fehlendes, konkretisiert
-eine neu angelegte minimale `AGENTS.md` aus dem vorhandenen Repo und fragt bei Bedarf, ob Git initialisiert
+Der ausschließlich vom Nutzer gestartete Einstieg prüft Node, ergänzt nur Fehlendes, konkretisiert eine
+neu angelegte minimale `AGENTS.md` aus dem vorhandenen Repo und fragt bei Bedarf, ob Git initialisiert
 werden soll. In einem bereits eingerichteten Repo bleibt sein Bericht bei einer Zeile.
 
-## Der tägliche Arbeitsloop
+## Der Arbeitsloop
 
-Callbell besitzt einen einzigen Nutzer-Einstieg mit lazy geladenen Modi:
+Callbell besitzt einen Nutzer-Einstieg mit lazy geladenen Modi:
 
 | Aufruf | Ergebnis |
 |---|---|
 | `callbell goal` | Klärt Idee, Vision, MVP oder nächsten Produktzustand ausschließlich im Gespräch und ohne dauerhafte Änderung. |
-| `callbell shape` | Reift Chat, Idee oder Import zu Projektwissen und Arbeitspaketen und bildet bei leerer Queue bis zu fünf sinnvolle `next`-Tasks. |
-| `callbell backlog` | Klärt Drafts, prüft ruhende Arbeit und ändert bei Bedarf Priorisierung oder `next`-Queue. |
-| `callbell run` | Führt den gewählten vorbereiteten Scope mit sicheren Worker- und Checker-Wellen bis zum Abschluss oder einer Stopbedingung aus. |
+| `callbell shape` | Reift Chat, Idee oder Import zu Projektwissen und Arbeitspaketen und bildet bei leerem Horizont bis zu fünf sinnvolle `next`-Tasks. |
+| `callbell backlog` | Klärt Drafts, prüft ruhende Arbeit und ändert bei Bedarf Priorisierung oder `next`-Horizont. |
+| `callbell run` | Führt höchstens fünf ausführbare Tasks seriell aus; ein Orchestrator steuert und Subagents setzen jeweils den aktiven Task um. |
 | `callbell review` | Klärt menschliche Entscheidungen, Prüfungen und Handlungen einzeln, ohne die Ausführung fortzusetzen. |
 | `callbell worktree` | Zeigt gemeinsame Git-Worktrees nummeriert; `new` legt einen für den aktuellen Arbeitskontext an. |
 
-Ohne Modus liest Callbell nur den bereits geladenen Projektzustand und empfiehlt die nächste sinnvolle
-Schleife. Es beginnt keine Arbeit. `worktree` verwaltet nur Isolation und ist selbst keine Arbeitsschleife.
-`goal` ist eine optionale Vorstufe; ein direkter Einstieg mit `shape` bleibt der Normalfall. `goal` schreibt
-weder Dateien noch Tasks und darf nicht selbst zu `shape` wechseln. Der Nutzer startet `shape` erst mit
-einem neuen ausdrücklichen Aufruf. Auch ein Wechsel zu `run` braucht immer einen neuen Aufruf.
-`backlog` ist keine Pflichtschleuse zwischen `shape` und `run`; der Modus dient der bewussten Änderung eines
-vorhandenen Arbeitsvorrats oder Ausführungshorizonts.
+Ohne Modus liest Callbell nur den bereits geladenen Projektzustand und empfiehlt den nächsten sinnvollen
+Einstieg. Es beginnt keine Arbeit. `goal` ist optional; dauerhafte Ausarbeitung und jede Ausführung brauchen
+einen eigenen ausdrücklichen Aufruf. `backlog` ist keine Pflichtschleuse, sondern dient der bewussten Pflege
+des Arbeitsvorrats.
 
 ### Statusmodell
 
@@ -102,42 +89,51 @@ draft → ready → next → in-progress → done
 ```
 
 - `draft`: Der Taskvertrag hat eine konkrete offene Frage.
-- `ready`: Eigenständig ausführbar, aber nicht Teil des nächsten Ausführungshorizonts.
-- `next`: Für den kommenden Ausführungshorizont disponiert und im Roster geordnet. Bei leerer Queue wählt
-  `shape` automatisch höchstens fünf Tasks seines Scopes und überführt ihren Status von `ready` nach
-  `next`; der Nutzer darf die Queue ändern oder erweitern.
-- `in-progress`: Von einer laufenden Ausführung beansprucht.
+- `ready`: Ohne bekannte Vertragsfrage eigenständig ausführbar.
+- `next`: Ebenfalls vollständig ausführbar und zusätzlich für den kommenden Horizont disponiert.
+- `in-progress`: Von der laufenden Ausführung beansprucht.
 - `review`: Wartet auf eine konkrete Entscheidung, Prüfung oder Abnahme des Nutzers.
 - `waiting`: Wartet auf eine externe Voraussetzung mit erkennbarem Wiederaufnahmesignal.
 - `done`: Beobachtbar abgeschlossen.
 
 `review` und `waiting` sind Abzweigungen, keine Pflichtstationen. Eine interne Task-Abhängigkeit allein
-macht einen Task nicht zu `waiting`; Reihenfolge und Abhängigkeiten bleiben im Roster. Bewusst später
-eingeplante Arbeit bleibt `ready` und wird nicht nach `next` übernommen.
-Eine bestehende `next`-Queue wird von einem späteren `shape` nicht still verändert. `next` bestimmt weder
-Parallelität noch Ausführungsautorisierung; erst ein ausdrückliches `callbell run` startet die Arbeit.
-Jeder Task trägt genau einen Status; `next` ist kein zusätzliches Queue-Feld neben `ready`.
+macht einen Task nicht zu `waiting`; Reihenfolge und Abhängigkeiten bleiben im Roster. Jeder Task trägt
+genau einen Status: `next` ist kein zusätzliches Feld neben `ready`, impliziert aber dieselbe vollständige
+Ausführungsreife.
 
-### Autonome Ausführung
+Eine bestehende `next`-Menge bleibt in Nutzerreihenfolge erhalten und darf beliebig groß sein. Ihre Größe
+bestimmt weder Parallelität noch den Umfang eines Laufs. Ein Run nimmt zuerst `next`; bleiben von seinen
+höchstens fünf Plätzen welche frei, wählt er selbstständig sinnvolle `ready`-Tasks desselben Scopes. Dadurch
+ist ein leerer `next`-Horizont kein Blocker und keine vorgeschaltete Backlog-Sitzung nötig.
 
-`callbell run` erhält vor der ersten Änderung einen vollständigen Harness aus Ziel, Scope-in, Scope-out,
-Spine, Beweisen und Grenzen. Der Aufruf autorisiert im gewählten Scope Subagents, lokale Änderungen,
-Prüfungen, isolierte Worktrees und lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment,
-keine Nachricht an Dritte und keine sonstige externe oder irreversible Wirkung.
+### Serielle Ausführung
 
-Der Hauptagent disponiert immer nur die nächste Welle, gibt jedem Worker ein enges Paket und prüft dessen
-Rückgabe gegen echten Diff und Beweise. Bei mittlerem oder hohem Risiko kann ein unabhängiger Checker
-hinzukommen. Menschliche Entscheidungen werden gesichert nach `review` übergeben; externe Blockaden nach
-`waiting`. Unabhängige Arbeit darf bis zu einer definierten Stopbedingung weiterlaufen.
+Der initiale Agent eines Runs ist der Orchestrator. Er hält Ziel, Scope, Spine, Taskauswahl, Subagents,
+Beweise, Integration und Stopbedingungen. Die Subagents setzen die fachliche Arbeit um.
+
+Es ist immer höchstens ein Task `in-progress`. Braucht dieser eine legitime Trennung nach Rollen oder
+Zielbereichen, darf der Orchestrator mehrere Subagents für denselben Task einsetzen. Ein zweiter Task beginnt
+erst nach Abschluss oder gesicherter Übergabe des aktiven Tasks. Nach jedem Task werden Abhängigkeiten und
+Reihenfolge neu bewertet.
+
+Ein initialer Umsetzungsversuch darf nach einem belegten Lösungsfehler höchstens zweimal gezielt korrigiert
+werden. Jede Korrektur braucht neue Evidenz; ein anderer Subagent oder eine neue Formulierung setzt das
+Budget nicht zurück. Scheitert auch die zweite Korrektur, stoppt die Aufgabe, hält Ursache und Restbefund
+kompakt fest und wechselt nach `review`. Blockiert sie weitere Tasks, endet der Lauf und der Nutzer
+entscheidet das weitere Vorgehen.
+
+Der Aufruf autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte Worktrees und
+lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an Dritte und keine
+sonstige externe oder irreversible Wirkung.
 
 ## SessionStart-Kontext
 
-Der Core schreibt seine Pluginregeln nicht in `CLAUDE.md` oder `AGENTS.md`. Ein gemeinsames Hook-Script
+Callbell schreibt seine Pluginregeln nicht in `CLAUDE.md` oder `AGENTS.md`. Ein gemeinsames Hook-Script
 injiziert unabhängige Blöcke; ihre Reihenfolge ist unerheblich:
 
 - `CALLBELL.md` und `FILES.md` gelten in jedem Ordner.
 - `FRONTMATTER.md` enthält nur die immer nötigen Such-, Schutz- und Ladeinvarianten. Das vollständige
-  Inhaltsschema wird erst vor einer tatsächlichen Markdown-Änderung aus dem Core-Store gelesen.
+  Inhaltsschema wird erst vor einer tatsächlichen Markdown-Änderung aus der bedingten Referenz gelesen.
 - Die schaltbare Arbeitsvereinbarung kommt aus `~/.callbell/rules/RULESET.md`.
 - Bei vorhandenem `__callbell__/` kommen `SCAFFOLD.md`, `BACKLOG.md` sowie die Projektindizes für Memory und
   Backlog hinzu.
@@ -149,7 +145,7 @@ Zeichen; mehrere kleine Handler sind dennoch kein Freibrief für unnötigen Sess
 
 ### Nutzerweite Schaltung
 
-`callbell-core` legt `~/.callbell/settings.json` an. Ohne abweichende Einstellung gelten:
+`callbell setup` legt `~/.callbell/settings.json` an. Ohne abweichende Einstellung gelten:
 
 ```json
 {
@@ -169,8 +165,8 @@ Kopie unter `~/.callbell/rules/`.
 
 ## Ambient- und Projektmodus
 
-Im Ambient-Modus stehen Core-Regeln und Skills in jedem Ordner bereit, ohne Dateien anzulegen. Der
-Projektmodus entsteht erst durch `callbell-core` und bündelt unter `__callbell__/`:
+Im Ambient-Modus stehen Callbell-Regeln und Skills in jedem Ordner bereit, ohne Dateien anzulegen. Der
+Projektmodus entsteht erst durch `callbell setup` und bündelt unter `__callbell__/`:
 
 ```text
 __callbell__/
@@ -186,54 +182,28 @@ __callbell__/
 Die beiden Zonen bleiben unversioniert. Ein externes Planungssystem wird nie in einen lokalen Backlog
 gespiegelt. `BACKLOG.md` bleibt der dauerhaft geladene Wegweiser zur einzigen operativen Autorität.
 
-## Installierbare Plugins
+## Fähigkeiten und Fach-Packs
 
-### `callbell-core`
+`callbell` bündelt Setup und den Arbeitsloop. `callbell-core` routet ausdrücklich gestartete Diagnose,
+Statusline, Telegram-Ping und Planungssystemwechsel; `callbell-mode` hält sessionweite Zusammenarbeitsmodi
+wie `adhd`. `callbell-help` bleibt der direkte Einzweck-Einstieg zur Übersicht. Filing, Import und Git
+werden bei passendem Gegenstand automatisch als `callbell-core-filing`, `callbell-core-import` und
+`callbell-core-git` gewählt.
 
-Der Core liefert SessionStart, Regeln und Scaffold. `callbell-core` bündelt `setup`, `doctor`, `statusline`,
-`ping telegram`, `backlog-system` und die zentrale Hilfe. Filing, Import und Git werden bei
-passendem Gegenstand automatisch gewählt; die vollständigen direkten Skillnamen bleiben verfügbar.
-
-### `callbell`
-
-Der standardmäßig installierte tägliche Arbeitsloop mit optionaler Zielklärung, Shape, Backlog, Run und
-Review. `callbell worktree` zeigt die gemeinsamen Git-Worktrees nummeriert und legt mit `new` einen zentralen
-Worktree für den aktuellen Arbeitskontext an. Das Plugin aktiviert unter Claude `callbell-core` als
-Abhängigkeit.
-
-### `callbell-dev`
-
-Das Pack für tatsächliche Codearbeit. Es bevorzugt die einfachste vollständig funktionierende Lösung und
-bietet ein ausdrückliches Review auf unnötige Komplexität.
+`callbell-dev` ist das Pack für tatsächliche Codearbeit. `callbell-web` ergänzt aktive Webprodukt-Arbeit um
+Produktprofil, Fähigkeiten, UI, Daten- und Berechtigungsgrenzen, Stack, Architektur, Sicherheit und Betrieb.
+Beide benötigen `callbell` und besitzen keinen eigenen Intake, Backlog oder Task-Workflow.
 
 ```text
 Claude: claude plugin install callbell-dev@callbell
-Codex:  codex plugin add callbell-dev@callbell
-```
-
-### `callbell-web`
-
-Die fachliche Capability für Websites, Web-Apps und SaaS-Produkte. Sie ergänzt aktive Callbell-Loops um
-Produktprofil, Fähigkeiten, UI, Daten- und Berechtigungsgrenzen, Stack, Architektur, Sicherheit und Betrieb.
-Sie besitzt keinen eigenen Intake, Backlog oder Task-Workflow.
-
-```text
 Claude: claude plugin install callbell-web@callbell
+Codex:  codex plugin add callbell-dev@callbell
 Codex:  codex plugin add callbell-web@callbell
 ```
 
-## Skills verwenden
-
-- Claude ruft einen Skill mit `/` auf, beispielsweise `/callbell run` oder `/callbell-core doctor`.
-- Codex verwendet `$`, beispielsweise `$callbell run`, oder das `/skills`-Menü.
-- Explizite Skills starten nie automatisch. Passive Skills wie Filing, Import, Git und Fach-Capabilities
-  werden nur bei passendem Gegenstand gewählt.
-
-`callbell-core help` zeigt die zentrale Karte für Core, täglichen Arbeitsloop und alle Fach-Packs. Der
-direkte Alias `callbell-core-help` bleibt verfügbar; einzelne Packs führen keine eigene Hilfe mehr.
-
-Skill-Details werden erst nach der Auswahl geladen. Callbell bündelt seine täglichen Schleifen deshalb in
-einer Beschreibung und hält ihre vollständigen Verfahren als bedingte Referenzen.
+Claude ruft einen Skill mit `/` auf, beispielsweise `/callbell run`, `/callbell-core doctor` oder
+`/callbell-mode adhd`. Codex verwendet `$`, beispielsweise `$callbell run`, oder das `/skills`-Menü.
+Explizite Skills starten nie automatisch.
 
 ## Projektbezogene Plugin-Updates
 

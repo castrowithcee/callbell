@@ -1,7 +1,0 @@
-interface:
-  display_name: "Callbell Planning System"
-  short_description: "Planungssystem sicher wechseln oder migrieren"
-  default_prompt: "Nutze $callbell-core-backlog-system, um das maßgebliche Planungssystem dieses Projekts sicher zu wechseln oder zu migrieren."
-
-policy:
-  allow_implicit_invocation: false
