@@ -25,7 +25,7 @@ Verwaltungswerkzeuge und Arbeitsloop starten ausschließlich durch einen Nutzera
 | **callbell setup** | Richtet Scaffold, Projekt-Ruleset und nutzerweite Einstellungen ein. |
 | **callbell goal** | Klärt Idee, Zielbild und kleinsten tragfähigen Umfang ausschließlich im Gespräch. |
 | **callbell shape** | Dokumentiert bestätigtes Wissen, schneidet ausführbare Arbeit und bildet bei leerem Horizont bis zu fünf `next`-Tasks. |
-| **callbell backlog** | Klärt Drafts, prüft wartende Arbeit und ändert bei Bedarf Priorisierung oder `next`-Horizont. |
+| **callbell backlog** | Bespricht ohne Scope alle Drafts einzeln bis `ready`, prüft wartende Arbeit und bildet einen sinnvollen `next`-Horizont. |
 | **callbell run** | Führt höchstens fünf Tasks seriell aus; der Orchestrator steuert und Subagents setzen jeweils den aktiven Task um. |
 | **callbell review** | Klärt menschliche Entscheidungen, Prüfungen und Abnahmen einzeln und beginnt keine Ausführung. |
 | **callbell worktree** | Zeigt gemeinsame Git-Worktrees nummeriert, legt mit `new` kontextgeleitet an und räumt sicher auf. |

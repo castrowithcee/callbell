@@ -37,9 +37,10 @@ Binding.
 - **`shape [Idee oder Quelle]`:** Lies vollständig [Ideen ausarbeiten](references/shape.md). Erzeuge aus
   Chat, Import oder bestehender Arbeit bestätigtes Projektwissen, ausführbare Arbeitspakete und bei leerem
   Horizont eine begrenzte `next`-Auswahl. Setze nichts um.
-- **`backlog [Scope]`:** Lies vollständig [Backlog disponieren](references/backlog.md). Reife Drafts,
-  priorisiere vorhandene Arbeit, ändere bei Bedarf den `next`-Horizont und prüfe ruhende Arbeit. Setze
-  nichts um.
+- **`backlog [Scope]`:** Lies vollständig [Backlog disponieren](references/backlog.md). Besprich ohne Scope
+  die offenen Vertragsfragen aller Drafts im maßgeblichen Backlog; ein Scope begrenzt diese Menge. Reife
+  geklärte Tasks zu `ready`, bilde einen sinnvollen `next`-Horizont und prüfe ruhende Arbeit. Setze nichts
+  um.
 - **`run [Task, Projekt oder Backlog]`:** Lies vollständig [Arbeit ausführen](references/run.md). Führe
   höchstens fünf ausführbare Tasks seriell durch einen Orchestrator und seine Subagents aus. Lies vor dem
   ersten schreibenden Git-Schritt zusätzlich vollständig [den Git-Ablauf](references/git-workflow.md).
@@ -70,7 +71,8 @@ Jede Schleife endet mit ihrem eigenen Ergebnis:
 
 - `goal` endet mit einem bestätigten Zielbild im Gespräch und ohne dauerhafte Änderung.
 - `shape` endet mit bestätigtem Wissen, `draft`- oder `ready`-Arbeit und einem gepflegten `next`-Horizont.
-- `backlog` endet mit einem konsolidierten Arbeitsvorrat und einem geordneten `next`-Horizont.
+- `backlog` endet mit einzeln besprochenen Drafts, einem konsolidierten Arbeitsvorrat und einem geordneten
+  `next`-Horizont.
 - `run` endet nach höchstens fünf seriell bearbeiteten Tasks oder an einer definierten Stopbedingung.
 - `review` endet nach den gewählten menschlichen Übergaben.
 

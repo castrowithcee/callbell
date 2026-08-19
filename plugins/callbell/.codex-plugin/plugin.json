@@ -1,6 +1,6 @@
 {
   "name": "callbell",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Callbell verbindet passiven Sessionkontext, Regeln und Projektzustand mit ausdrücklich gestarteter Einrichtung, Planung, serieller Ausführung und sicheren Verwaltungswerkzeugen.",
   "author": { "name": "Callbell" },
   "homepage": "https://github.com/castrowithcee/callbell",
