@@ -1,12 +1,13 @@
 ---
 name: callbell
 description: >
-  Steuert auf ausdrücklichen Aufruf Callbells täglichen Arbeitsloop: eine Idee oder Eingabe mit `shape`
-  ausarbeiten und dokumentieren, den Arbeitsvorrat mit `backlog` disponieren, eine freigegebene Queue mit
-  `run` autonom ausführen, menschliche Übergaben mit `review` klären oder gemeinsame Git-Worktrees mit
-  `worktree` verwalten. Ohne Modus nur den nächsten sinnvollen Loop empfehlen. Niemals automatisch starten.
+  Steuert auf ausdrücklichen Aufruf Callbells Arbeitsloop: eine Idee mit `goal` unverbindlich zum Zielbild
+  klären, mit `shape` ausarbeiten und dokumentieren, den Arbeitsvorrat mit `backlog` disponieren, eine
+  vorbereitete Queue mit `run` autonom ausführen, menschliche Übergaben mit `review` klären oder gemeinsame
+  Git-Worktrees mit `worktree` verwalten. Ohne Modus nur den nächsten sinnvollen Loop empfehlen. Niemals
+  automatisch starten.
 disable-model-invocation: true
-argument-hint: "[shape|backlog|run|review|worktree] [context]"
+argument-hint: "[goal|shape|backlog|run|review|worktree] [context]"
 license: MIT
 type: skill
 edit: locked
@@ -28,11 +29,16 @@ dessen Binding.
 
 - **Kein Modus:** Lies nur den bereits geladenen Projektzustand, nenne knapp den nächsten sinnvollen Modus
   und ändere nichts. Fehlt ein Callbell-Scaffold, verweise auf `callbell-core`.
+- **`goal [Idee, Vision oder Ziel]`:** Lies vollständig [Zielbild klären](references/goal.md). Erkunde im
+  Gespräch Problem, Nutzen, Zielgruppe, kleinsten tragfähigen Zielzustand und mögliche spätere Entwicklung.
+  Verändere weder Dateien noch Planungssystem. Nur ein späterer ausdrücklicher `shape`-Aufruf darf das
+  bestätigte Zielbild dauerhaft festhalten und in Arbeitspakete schneiden.
 - **`shape [Idee oder Quelle]`:** Lies vollständig [Ideen ausarbeiten](references/shape.md). Aus Chat,
-  Import oder bestehender Arbeit entstehen bestätigtes Projektwissen und ausführbare Arbeitspakete. Keine
-  Umsetzung.
+  Import oder bestehender Arbeit entstehen bestätigtes Projektwissen, ausführbare Arbeitspakete und bei
+  leerer Queue ein begrenzter `next`-Horizont. Keine Umsetzung.
 - **`backlog [Scope]`:** Lies vollständig [Backlog disponieren](references/backlog.md). Kläre Drafts,
-  bestimme die nächste freigegebene Queue und prüfe ruhende Arbeit. Keine Umsetzung.
+  priorisiere vorhandene Arbeit, ändere bei Bedarf die `next`-Queue und prüfe ruhende Arbeit. Keine
+  Umsetzung.
 - **`run [Task, Projekt oder Backlog]`:** Lies vollständig [Arbeit ausführen](references/run.md). Dieser
   Modus verwendet die autonome Worker-, Checker-, Integrations- und Stoplogik. Lies vor dem ersten
   schreibenden Git-Schritt zusätzlich vollständig [den Git-Ablauf](references/git-workflow.md).
@@ -52,8 +58,9 @@ Autorität. Spiegle ein externes System nie in lokale Tasks und behaupte keine d
 nicht erreichbar ist.
 
 Nutze installierte Fach-Packs, wenn ihre Methode zum Gegenstand passt. Der gewählte Callbell-Modus behält
-Eigentum an Gespräch, dauerhaftem Projektwissen, Spine, Status und Übergabe; ein Fach-Pack liefert Methode
-und Prüfperspektive, keinen konkurrierenden Workflow.
+Eigentum an Gespräch und Übergabe. `goal` hält seinen Stand ausschließlich im Gespräch; die übrigen Modi
+pflegen dauerhaftes Projektwissen, Spine und Status nur im Rahmen ihres jeweiligen Vertrags. Ein Fach-Pack
+liefert Methode und Prüfperspektive, keinen konkurrierenden Workflow.
 
 Behandle Delegation nie als Retry-Strategie. Das Fehlerbudget gehört zum Task und Abnahmekriterium,
 unabhängig von Hauptagent, Worker, Follow-up, Worktree oder Session. Ein anderer Agent und eine neue
@@ -62,7 +69,8 @@ und einer daraus abgeleiteten Änderung; sichere andernfalls den Stand und über
 
 Jede Schleife endet mit ihrem eigenen Ergebnis:
 
-- `shape` endet mit bestätigtem Wissen und `draft`- oder `ready`-Arbeit.
+- `goal` endet mit einem bestätigten Zielbild im Gespräch und ohne dauerhafte Änderung.
+- `shape` endet mit bestätigtem Wissen, `draft`- oder `ready`-Arbeit und einem gepflegten `next`-Horizont.
 - `backlog` endet mit einem konsolidierten Arbeitsvorrat und einer geordneten `next`-Queue.
 - `run` endet an seinem belegten Ziel oder einer definierten Stopbedingung.
 - `review` endet nach den gewählten menschlichen Übergaben.
@@ -70,4 +78,5 @@ Jede Schleife endet mit ihrem eigenen Ergebnis:
 `worktree` ist keine Arbeitsschleife und startet keine Umsetzung. Der Modus verwaltet nur die gemeinsame
 Isolation, die ein späterer oder bereits autorisierter Lauf verwenden kann.
 
-Ein Übergang zu `run` braucht immer einen neuen ausdrücklichen Nutzeraufruf.
+`goal` ist eine optionale Vorstufe. Ein direkter Einstieg mit `shape` bleibt gültig. Der Übergang von
+`goal` zu `shape` und jeder Übergang zu `run` brauchen einen neuen ausdrücklichen Nutzeraufruf.

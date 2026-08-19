@@ -1,8 +1,9 @@
 # Callbell
 
-Callbell führt Ideen und vorhandene Arbeit durch wiederholbare Schleifen bis zum belegten Ergebnis. Eine
-dauerhaft aktive Infrastruktur hält Kontext, Normen und Projektzustand zusammen. Core und täglicher
-Arbeitsloop bilden die Grundausstattung; fachliche Methoden bleiben bewusst installierbare Packs.
+Callbell klärt neue Ziele und führt Ideen sowie vorhandene Arbeit durch wiederholbare Schleifen bis zum
+belegten Ergebnis. Eine dauerhaft aktive Infrastruktur hält Kontext, Normen und Projektzustand zusammen.
+Core und täglicher Arbeitsloop bilden die Grundausstattung; fachliche Methoden bleiben bewusst
+installierbare Packs.
 
 ## Das Modell
 
@@ -13,7 +14,9 @@ Nutzerprompt + AGENTS.md + SessionStart
    Kontext, Regeln, Scaffold, Spine
                   ↓
              callbell
-  Shape → Backlog → Run → Review
+       Goal? → Shape → Run ↔ Review
+                  ↕
+               Backlog
                   ↓
          fachliche Packs
        Dev · Web · weitere
@@ -75,15 +78,20 @@ Callbell besitzt einen einzigen Nutzer-Einstieg mit lazy geladenen Modi:
 
 | Aufruf | Ergebnis |
 |---|---|
-| `callbell shape` | Reift Chat, Idee oder Import zu bestätigtem Projektwissen und `draft`- oder `ready`-Arbeit. |
-| `callbell backlog` | Klärt Drafts, prüft ruhende Arbeit und bestimmt mit dem Nutzer die geordnete `next`-Queue. |
-| `callbell run` | Führt den gewählten freigegebenen Scope mit sicheren Worker- und Checker-Wellen bis zum Abschluss oder einer Stopbedingung aus. |
+| `callbell goal` | Klärt Idee, Vision, MVP oder nächsten Produktzustand ausschließlich im Gespräch und ohne dauerhafte Änderung. |
+| `callbell shape` | Reift Chat, Idee oder Import zu Projektwissen und Arbeitspaketen und bildet bei leerer Queue bis zu fünf sinnvolle `next`-Tasks. |
+| `callbell backlog` | Klärt Drafts, prüft ruhende Arbeit und ändert bei Bedarf Priorisierung oder `next`-Queue. |
+| `callbell run` | Führt den gewählten vorbereiteten Scope mit sicheren Worker- und Checker-Wellen bis zum Abschluss oder einer Stopbedingung aus. |
 | `callbell review` | Klärt menschliche Entscheidungen, Prüfungen und Handlungen einzeln, ohne die Ausführung fortzusetzen. |
 | `callbell worktree` | Zeigt gemeinsame Git-Worktrees nummeriert; `new` legt einen für den aktuellen Arbeitskontext an. |
 
 Ohne Modus liest Callbell nur den bereits geladenen Projektzustand und empfiehlt die nächste sinnvolle
 Schleife. Es beginnt keine Arbeit. `worktree` verwaltet nur Isolation und ist selbst keine Arbeitsschleife.
-Ein Wechsel zu `run` braucht immer einen neuen ausdrücklichen Aufruf.
+`goal` ist eine optionale Vorstufe; ein direkter Einstieg mit `shape` bleibt der Normalfall. `goal` schreibt
+weder Dateien noch Tasks und darf nicht selbst zu `shape` wechseln. Der Nutzer startet `shape` erst mit
+einem neuen ausdrücklichen Aufruf. Auch ein Wechsel zu `run` braucht immer einen neuen Aufruf.
+`backlog` ist keine Pflichtschleuse zwischen `shape` und `run`; der Modus dient der bewussten Änderung eines
+vorhandenen Arbeitsvorrats oder Ausführungshorizonts.
 
 ### Statusmodell
 
@@ -94,8 +102,10 @@ draft → ready → next → in-progress → done
 ```
 
 - `draft`: Der Taskvertrag hat eine konkrete offene Frage.
-- `ready`: Eigenständig ausführbar, aber noch nicht für den nächsten Horizont freigegeben.
-- `next`: Vom Nutzer für die kommende Ausführung ausgewählt und im Roster geordnet.
+- `ready`: Eigenständig ausführbar, aber nicht Teil des nächsten Ausführungshorizonts.
+- `next`: Für den kommenden Ausführungshorizont disponiert und im Roster geordnet. Bei leerer Queue wählt
+  `shape` automatisch höchstens fünf Tasks seines Scopes und überführt ihren Status von `ready` nach
+  `next`; der Nutzer darf die Queue ändern oder erweitern.
 - `in-progress`: Von einer laufenden Ausführung beansprucht.
 - `review`: Wartet auf eine konkrete Entscheidung, Prüfung oder Abnahme des Nutzers.
 - `waiting`: Wartet auf eine externe Voraussetzung mit erkennbarem Wiederaufnahmesignal.
@@ -104,6 +114,9 @@ draft → ready → next → in-progress → done
 `review` und `waiting` sind Abzweigungen, keine Pflichtstationen. Eine interne Task-Abhängigkeit allein
 macht einen Task nicht zu `waiting`; Reihenfolge und Abhängigkeiten bleiben im Roster. Bewusst später
 eingeplante Arbeit bleibt `ready` und wird nicht nach `next` übernommen.
+Eine bestehende `next`-Queue wird von einem späteren `shape` nicht still verändert. `next` bestimmt weder
+Parallelität noch Ausführungsautorisierung; erst ein ausdrückliches `callbell run` startet die Arbeit.
+Jeder Task trägt genau einen Status; `next` ist kein zusätzliches Queue-Feld neben `ready`.
 
 ### Autonome Ausführung
 
@@ -183,9 +196,10 @@ passendem Gegenstand automatisch gewählt; die vollständigen direkten Skillname
 
 ### `callbell`
 
-Der standardmäßig installierte tägliche Arbeitsloop mit Shape, Backlog, Run und Review. `callbell worktree`
-zeigt die gemeinsamen Git-Worktrees nummeriert und legt mit `new` einen zentralen Worktree für den aktuellen
-Arbeitskontext an. Das Plugin aktiviert unter Claude `callbell-core` als Abhängigkeit.
+Der standardmäßig installierte tägliche Arbeitsloop mit optionaler Zielklärung, Shape, Backlog, Run und
+Review. `callbell worktree` zeigt die gemeinsamen Git-Worktrees nummeriert und legt mit `new` einen zentralen
+Worktree für den aktuellen Arbeitskontext an. Das Plugin aktiviert unter Claude `callbell-core` als
+Abhängigkeit.
 
 ### `callbell-dev`
 

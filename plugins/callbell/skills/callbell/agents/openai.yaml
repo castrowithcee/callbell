@@ -1,7 +1,7 @@
 interface:
   display_name: "Callbell"
-  short_description: "Arbeit durch sichere Loops und Worktrees führen"
-  default_prompt: "Nutze $callbell, um den passenden Arbeitsloop für dieses Projekt zu starten."
+  short_description: "Ziele klären und Arbeit sicher ausführen"
+  default_prompt: "Nutze $callbell, um ein Ziel zu klären oder den passenden Arbeitsloop für dieses Projekt zu starten."
 
 policy:
   allow_implicit_invocation: false

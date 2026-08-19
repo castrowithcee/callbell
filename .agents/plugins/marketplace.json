@@ -11,7 +11,7 @@
       "source": { "source": "local", "path": "./plugins/callbell" },
       "policy": { "installation": "INSTALLED_BY_DEFAULT", "authentication": "ON_INSTALL" },
       "category": "Productivity",
-      "description": "Der tägliche Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, eine freigegebene Queue autonom ausführen, menschliche Übergaben klären und gemeinsame Git-Worktrees verwalten. Benötigt callbell-core." },
+      "description": "Der tägliche Arbeitsloop: Ziele unverbindlich klären, Ideen ausarbeiten, den Backlog bei Bedarf disponieren, eine vorbereitete Queue autonom ausführen, menschliche Übergaben klären und gemeinsame Git-Worktrees verwalten. Benötigt callbell-core." },
     { "name": "callbell-dev",
       "source": { "source": "local", "path": "./plugins/callbell-dev" },
       "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },

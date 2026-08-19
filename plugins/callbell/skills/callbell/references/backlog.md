@@ -1,7 +1,7 @@
 ---
 description: >
-  Interaktive Disposition des maßgeblichen Backlogs von unreifen Paketen über die freigegebene Queue bis
-  zu menschlichen oder extern wartenden Aufgaben.
+  Interaktive Reifung und bewusste Umpriorisierung des maßgeblichen Backlogs von unreifen Paketen über den
+  nächsten Ausführungshorizont bis zu menschlichen oder extern wartenden Aufgaben.
 type: playbook
 edit: locked
 license: MIT
@@ -11,6 +11,11 @@ license: MIT
 
 Aus einem vorhandenen Arbeitsvorrat entsteht eine verständliche, ausführbare und bewusst geordnete Queue.
 Dieser Modus verändert Planung und Taskverträge, führt aber keine fachliche Arbeit aus.
+
+`shape` darf für seinen gerade ausgearbeiteten Scope bereits einen begrenzten `next`-Horizont bilden.
+Verwende `backlog`, wenn Drafts reifen, ruhende Arbeit geprüft, mehrere Scopes gegeneinander priorisiert
+oder eine bestehende Queue bewusst geändert werden soll. Der Modus ist keine Pflichtschleuse zwischen
+`shape` und `run`.
 
 ## Bestand bilden
 
@@ -35,8 +40,9 @@ Arbeite in dieser Reihenfolge, soweit der gewählte Scope die Gruppe enthält:
    maßgeblichen Planungssystems erst auf `ready`, wenn keine bekannte Vertragsfrage bleibt.
 3. **Ruhende Arbeit prüfen.** Hebe `waiting` nur auf, wenn das Wiederaufnahmesignal belegt eingetreten ist.
 4. **Queue bestimmen.** Empfiehl aus `ready` eine fachlich begründete Auswahl und ihre Reihenfolge. Verschiebe
-   sie erst nach Nutzerbestätigung nach `next`. Eine Aufgabenmenge ist `next`, wenn vor ihrer Ausführung
-   keine weitere Priorisierungsentscheidung nötig ist.
+   ihren Status erst nach Nutzerbestätigung nach `next`. Eine Aufgabenmenge steht auf `next`, wenn sie den
+   vorbereiteten kommenden Ausführungshorizont bildet und vor ihrem Lauf keine weitere
+   Priorisierungsentscheidung nötig ist.
 5. **Bestehende Queue konsolidieren.** Entferne Doppelungen, löse widersprüchliche Reihenfolgen und prüfe
    Abhängigkeiten, ohne ausführbare Taskverträge unnötig umzuschreiben.
 
@@ -46,6 +52,8 @@ Arbeite in dieser Reihenfolge, soweit der gewählte Scope die Gruppe enthält:
   eigenständige Pakete, wenn ihr Vertrag verstanden ist; halte spätere Horizonte kompakt im Projektwissen.
 - Setze nichts auf `in-progress` oder `done` und beginne keine Implementierung.
 - Eine bloße Empfehlung setzt keinen Task auf `next`.
+- Die automatische Shape-Grenze von fünf Tasks begrenzt keine ausdrücklich vom Nutzer zusammengestellte
+  Queue.
 - Bewahre keine Review- oder Planungshistorie im Task. Er bleibt der konsolidierte aktuelle Stand.
 
 Beende mit der Anzahl der weiterhin `draft`, `waiting`, `review` und neu oder weiterhin `next`

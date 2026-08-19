@@ -45,9 +45,10 @@ Abkürzungen verfügbar. `callbell-core-adhd` ist ein eigener ausdrücklicher Se
 
 | Aufruf | Aufgabe |
 |---|---|
-| **callbell shape** | Reift eine Idee oder Eingabe, dokumentiert bestätigtes Wissen und schneidet ausführbare Arbeit. |
-| **callbell backlog** | Klärt Drafts, prüft wartende Arbeit und bestimmt mit dem Nutzer die `next`-Queue. |
-| **callbell run** | Führt einen freigegebenen Scope in sicheren Wellen bis zum belegten Abschluss oder zu einer Stopbedingung aus. |
+| **callbell goal** | Klärt Idee, Zielbild und kleinsten tragfähigen Umfang ausschließlich im Gespräch. |
+| **callbell shape** | Dokumentiert bestätigtes Wissen, schneidet ausführbare Arbeit und bildet bei leerer Queue einen begrenzten `next`-Horizont. |
+| **callbell backlog** | Klärt Drafts, prüft wartende Arbeit und ändert bei Bedarf die Priorisierung oder `next`-Queue. |
+| **callbell run** | Führt einen vorbereiteten Scope in sicheren Wellen bis zum belegten Abschluss oder zu einer Stopbedingung aus. |
 | **callbell review** | Klärt menschliche Entscheidungen, Prüfungen und Abnahmen einzeln und beginnt keine Ausführung. |
 | **callbell worktree** | Zeigt gemeinsame Git-Worktrees nummeriert, legt mit `new` kontextgeleitet an und räumt sicher auf. |
 

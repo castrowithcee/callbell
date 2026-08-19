@@ -1,6 +1,6 @@
 ---
 description: >
-  Autonomer Arbeitsloop für eine ausdrücklich freigegebene Task-, Projekt- oder Backlog-Queue mit Harness,
+  Autonomer Arbeitsloop für eine ausdrücklich gestartete Task-, Projekt- oder Backlog-Queue mit Harness,
   Worker- und Checker-Wellen, lokaler Integration, Beweisen und gesicherten Stopbedingungen.
 type: playbook
 edit: locked
@@ -87,6 +87,8 @@ Führe bis zu einer Stopbedingung dieselbe Schleife aus:
 - Parallelisiere nur getrennte Zielbereiche mit sicherer Isolation. Serialisiere jede mögliche
   Überschneidung.
 - Plane nur die nächste Welle. Mehr Worker sind kein Ziel.
+- Leite aus der Größe der `next`-Queue keine Parallelität ab. Der vorbereitete Horizont darf vollständig
+  seriell ausgeführt werden.
 
 ### 2. Rollen besetzen
 
@@ -162,6 +164,8 @@ kommen in die Review-Schlange, während unabhängige Arbeit weiterläuft.
 Beende den Lauf, sobald eine dieser Bedingungen gilt:
 
 - Der gewählte Scope ist vollständig und belegt abgeschlossen.
+- Der gewählte `next`-Horizont ist ausgeschöpft; außerhalb davon verbleibendes `ready` wird nicht still
+  nachgezogen.
 - Es bleibt nur Arbeit mit unerfüllten Abhängigkeiten, `waiting` oder menschlicher Übergabe.
 - Eine Scope-, Risiko-, Außenwirkungs- oder Berechtigungsgrenze ist erreicht.
 - Der Steuerbranch wurde seit dem Preflight fremd verändert.

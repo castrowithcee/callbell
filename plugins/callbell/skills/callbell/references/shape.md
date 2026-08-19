@@ -1,7 +1,8 @@
 ---
 description: >
   Ausarbeitung einer Idee oder vorhandenen Eingabe zu bestätigtem, kompakt dokumentiertem Projektwissen
-  und eigenständig ausführbaren Arbeitspaketen, ohne die geplante Arbeit umzusetzen.
+  und eigenständig ausführbaren Arbeitspaketen mit einem begrenzten nächsten Ausführungshorizont, ohne die
+  geplante Arbeit umzusetzen.
 type: playbook
 edit: locked
 license: MIT
@@ -113,11 +114,31 @@ keine hunderten Dateien nur, um eine ferne Idee vorzutäuschen. Es gilt keine ha
 ausführbare Reife.
 
 Gruppiere nur zusammengehörige oder abhängige Pakete in einem Projekt. Pflege den maßgeblichen Roster und
-die Reihenfolge mit, aber setze in diesem Modus weder `next` noch `in-progress`: `ready` bedeutet
-ausführbar, `next` ist eine spätere bewusste Disposition.
+die fachlich ausführbare Reihenfolge mit. Setze in diesem Modus niemals `in-progress`.
 
 Beim lokalen Backlog nutze die im Vertrag genannten kanonischen Vorlagen. Nutze keine Nutzer-Vorlage als
 Ersatz für diese Systemdateien.
+
+## Nächsten Horizont disponieren
+
+Pflege am Ende des Zuschnitts die maßgebliche `next`-Queue mit:
+
+- Ist bereits eine `next`-Queue vorhanden, verdränge, ergänze oder sortiere sie nicht still. Die neu
+  ausgearbeiteten Pakete bleiben `ready`, sofern der Nutzer die bestehende Queue nicht ausdrücklich in
+  diesem Aufruf ändern lässt.
+- Ist die Queue leer, wähle aus den `ready`-Paketen des gerade ausgearbeiteten Scopes höchstens fünf für
+  den nächsten Horizont und überführe ihren Status von `ready` nach `next`. Wähle nur einen
+  zusammenhängenden Horizont und bei Bedarf weniger als fünf. `ready` und `next` sind keine gleichzeitigen
+  Eigenschaften desselben Tasks.
+- Ordne nach erfüllbaren Abhängigkeiten, fachlichem Nutzen, früher Risikoklärung und sinnvoller Integration.
+  Die Queue-Reihenfolge ist keine Parallelitätsentscheidung.
+- Nimm niemals `draft`, `review` oder `waiting` in den Horizont auf. Hole keine unbeteiligten `ready`-Tasks
+  aus anderen Scopes hinzu.
+- Der Nutzer darf die Queue ausdrücklich ändern oder auf mehr als fünf Pakete erweitern. Die Grenze gilt
+  nur für die automatische Disposition durch `shape`.
+
+`next` bereitet den kommenden Horizont vor, autorisiert aber keine Ausführung. Diese beginnt ausschließlich
+durch einen späteren ausdrücklichen Aufruf von `callbell run`.
 
 ## Analyse bei Bedarf delegieren
 
@@ -133,7 +154,8 @@ Planungssystem stehen und jede bekannte offene Vertragsfrage sichtbar ist. Nenne
 
 - welche Projektdokumentation entstand oder aktualisiert wurde,
 - welche Tasks `draft` und welche `ready` sind,
+- welche Tasks neu oder weiterhin `next` sind,
 - welche Entscheidung noch fehlt,
-- dass `callbell backlog` die Auswahl der `next`-Queue übernimmt.
+- dass `callbell backlog` nur für eine bewusste Änderung oder weitergehende Disposition nötig ist.
 
 Führe keinen Task aus.

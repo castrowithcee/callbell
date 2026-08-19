@@ -12,11 +12,13 @@ edit: shared
      Root-Aufgabe und Projekt pflegen:
      - [Titel](datei-oder-projekt/INDEX.md) - Status, kurzer Stand.
      Root-Aufgaben liegen hier flach. Projektaufgaben, Reihenfolge und Abhängigkeiten stehen im Projektindex.
-     Review-Tasks zuerst sichtbar halten; `next` ist die freigegebene Ausführungsqueue. Der Status active
-     eines Projekts ist keine Task-Priorität.
+     Review-Tasks zuerst sichtbar halten; `next` ist der vorbereitete, agentisch gepflegte und vom Nutzer
+     überschreibbare Ausführungshorizont. Erst `callbell run` autorisiert seine Ausführung. Der Status
+     active eines Projekts ist keine Task-Priorität.
      Bei einem ausdrücklich gewählten externen System stattdessen dessen prominenten Link und das kompakte
      Binding zu Anbieter, Objekt, Arbeitspaketen, Entwürfen, Status, aktuellem Datensatz, Historienkanal,
      Lesepolitik, Schreibweg und Betriebsgrenzen festhalten.
      Der lokale Backlog wird dann nicht gespiegelt. Einen Wechsel übernimmt callbell-core-backlog-system.
-     Mit installiertem Callbell-Pack übernimmt `callbell shape` die Ausarbeitung, `callbell backlog` die
-     Disposition und `callbell run` die freigegebene Ausführung. -->
+     Mit installiertem Callbell-Pack übernimmt `callbell shape` Ausarbeitung und begrenzte nächste
+     Disposition, `callbell backlog` bewusste Umpriorisierung und `callbell run` die ausdrücklich gestartete
+     Ausführung. -->

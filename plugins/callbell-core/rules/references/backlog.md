@@ -71,8 +71,11 @@ Zulässige Rück- und Übergabepfade:
 - `waiting -> draft | ready | next`
 
 - `draft`: Das Arbeitspaket selbst hat eine offene Frage zu Scope-in, Scope-out, Vorgehen oder Abnahme.
-- `ready`: Eigenständig ausführbar, aber noch nicht für den nächsten Ausführungshorizont freigegeben.
-- `next`: Für die kommende Ausführung freigegeben. Der Roster bestimmt Reihenfolge und Abhängigkeiten.
+- `ready`: Eigenständig ausführbar, aber nicht Teil des nächsten Ausführungshorizonts.
+- `next`: Für den kommenden Ausführungshorizont disponiert. `shape` darf aus seinem gerade ausgearbeiteten
+  Scope bei leerer Queue automatisch höchstens fünf Tasks von `ready` nach `next` überführen; der Nutzer
+  darf die Queue jederzeit ändern oder ausdrücklich erweitern. Der Roster bestimmt Reihenfolge und
+  Abhängigkeiten.
 - `in-progress`: Eine laufende Ausführung hat es beansprucht. Ohne sichtbaren Worker kläre zuerst die
   Eigentümerschaft und überführe den Task anhand des tatsächlichen nächsten Schritts in einen anderen Status.
 - `review`: Der nächste Schritt ist eine konkrete Entscheidung, Prüfung oder Abnahme des Nutzers.
@@ -82,6 +85,13 @@ Zulässige Rück- und Übergabepfade:
 
 Bewusst zurückgestellte, aber weiterhin ausführbare Arbeit bleibt `ready` und wird nicht nach `next`
 disponiert. Dafür braucht es keinen eigenen Zustand.
+
+Eine bestehende `next`-Queue ist eine bewusste Arbeitsdisposition und wird von einem späteren `shape` nicht
+still verdrängt, ergänzt oder umsortiert. `next` autorisiert keine Ausführung; erst der ausdrückliche Aufruf
+von `callbell run` startet sie. Die Größe der Queue bestimmt keine Parallelität.
+
+Jeder Task trägt genau einen Status. `next` ist im lokalen Backlog kein zusätzliches Queue-Feld neben
+`ready`, sondern ersetzt `ready`, solange der Task zum nächsten Horizont gehört.
 
 Setze einen beanspruchten Task unmittelbar vor der ersten schreibenden Ausführung auf `in-progress` und
 pflege seinen Roster im selben Schritt. Eine bloße Bestandsaufnahme beansprucht ihn noch nicht.

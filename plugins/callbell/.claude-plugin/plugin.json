@@ -3,12 +3,12 @@
   "name": "callbell",
   "displayName": "Callbell",
   "version": "2.0.6",
-  "description": "Täglicher Callbell-Arbeitsloop: Ideen ausarbeiten, den Backlog disponieren, freigegebene Arbeit autonom ausführen, Übergaben klären und gemeinsame Git-Worktrees verwalten.",
+  "description": "Täglicher Callbell-Arbeitsloop: Ziele unverbindlich klären, Ideen ausarbeiten, den Backlog disponieren, vorbereitete Arbeit autonom ausführen, Übergaben klären und gemeinsame Git-Worktrees verwalten.",
   "author": { "name": "Callbell", "url": "https://github.com/castrowithcee" },
   "homepage": "https://github.com/castrowithcee/callbell",
   "repository": "https://github.com/castrowithcee/callbell",
   "license": "MIT",
-  "keywords": ["planning", "backlog", "orchestration", "subagents", "workflow", "worktree", "review", "automation"],
+  "keywords": ["brainstorming", "planning", "backlog", "orchestration", "subagents", "workflow", "worktree", "review", "automation"],
   "skills": "./skills/",
   "dependencies": ["callbell-core@callbell"]
 }
