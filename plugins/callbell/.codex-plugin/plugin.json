@@ -1,6 +1,6 @@
 {
   "name": "callbell",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Täglicher Callbell-Arbeitsloop: Ziele unverbindlich klären, Ideen ausarbeiten, den Backlog disponieren, vorbereitete Arbeit autonom ausführen, Übergaben klären und gemeinsame Git-Worktrees verwalten.",
   "author": { "name": "Callbell" },
   "homepage": "https://github.com/castrowithcee/callbell",
