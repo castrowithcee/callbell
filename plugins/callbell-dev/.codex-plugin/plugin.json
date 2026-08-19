@@ -1,6 +1,6 @@
 {
   "name": "callbell-dev",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Code-Pack für callbell: ein fauler Senior-Entwickler, der die einfachste funktionierende Lösung baut, plus ein Review-Skill, der sie prüft.",
   "author": { "name": "Callbell" },
   "homepage": "https://github.com/castrowithcee/callbell",
@@ -12,7 +12,7 @@
   "interface": {
     "displayName": "Callbell Dev",
     "shortDescription": "Der faulste Code, der wirklich funktioniert",
-    "longDescription": "Code-Pack für Callbell. Ein fauler Senior-Entwickler in drei Stufen (lite, full, ultra), der vor dem Bauen fragt, ob etwas überhaupt existieren muss, vor eigenem Code die Standardbibliothek und Plattform nutzt und eine ausführbare Prüfung hinterlässt. Ein Review-Skill prüft einen Diff oder ein ganzes Repo auf Over-Engineering. Benötigt callbell-core.",
+    "longDescription": "Code-Pack für Callbell. Ein fauler Senior-Entwickler in drei Stufen (lite, full, ultra), der vor dem Bauen fragt, ob etwas überhaupt existieren muss, vor eigenem Code die Standardbibliothek und Plattform nutzt und eine ausführbare Prüfung hinterlässt. Ein Review-Skill prüft einen Diff oder ein ganzes Repo auf Over-Engineering. Benötigt callbell.",
     "developerName": "Callbell",
     "category": "Productivity",
     "capabilities": ["Instructions", "Lifecycle hooks"],
