@@ -21,7 +21,7 @@ edit: locked
 
 ## Ablage pro Kunde
 - `<id>/INDEX.md`: der Stammdatensatz des Kunden (Kurzname, Status, worum es geht). **Keine** Kontaktdaten.
-- Fälle, Fakten, Entscheidungen als typisierte Dateien unter `<id>/` (siehe `callbell-core-filing`).
+- Fälle, Fakten und Entscheidungen als typisierte Dateien unter `<id>/` nach den allgemeinen Ablageregeln.
 
 ## Datenschutzleitplanken
 - **Keine Kontaktdaten** (Adresse, Telefon, E-Mail, Zahlungsdaten) im Repo, auch nicht, wenn sie

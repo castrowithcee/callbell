@@ -16,9 +16,10 @@ Hex-Zeichen. Eine Aufgabe passt in eine Session, bleibt auch mit erlaubten Links
 immer nur ihren aktuellen, weiterhin gültigen Stand ab. Reihenfolge und Abhängigkeiten stehen zusätzlich im
 jeweiligen Index. Erst wenn alle für die eigenständige Ausführung nötigen Punkte geklärt oder ausdrücklich
 als nicht relevant markiert sind, wechselt der Task von draft zu ready. `next` folgt erst aus einer
-bewussten Disposition. Die Backlog-Regel mit ihrer Referenz bestimmt Benennung, Lebenszyklus und
-Konsolidierung unabhängig
-davon, wie die Aufgabe entsteht. -->
+bewussten Disposition. Bei leerer Queue dürfen aus dem aktuellen Scope automatisch höchstens fünf Tasks von
+ready nach next überführt werden; beide sind nie gleichzeitige Eigenschaften. Der Nutzer darf diese Queue
+ändern oder erweitern. Der maßgebliche Backlog-Vertrag bestimmt Benennung, Lebenszyklus und Konsolidierung
+unabhängig davon, wie die Aufgabe entsteht. -->
 
 ## Warum
 <!-- Entscheidungsrelevanter Kontext, keine Wiederholung des Titels. -->
