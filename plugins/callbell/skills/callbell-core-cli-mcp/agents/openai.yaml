@@ -1,0 +1,5 @@
+interface:
+  display_name: "Callbell Core CLI/MCP"
+  short_description: "Callbell-Tools sicher einrichten und verwenden"
+  default_prompt: "Nutze $callbell-core-cli-mcp als Einstieg, um die Callbell CLI oder ihren MCP-Broker sicher zu verwenden."
+

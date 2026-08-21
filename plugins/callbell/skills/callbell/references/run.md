@@ -15,9 +15,13 @@ Ergebnisse oder konkrete menschliche Übergaben. Der initiale Agent ist der Orch
 Spine, Taskauswahl, Subagents, Beweise, Integration und Stopbedingungen; die Subagents setzen die fachliche
 Arbeit um.
 
-Der Aufruf autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte Worktrees und
-lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an Dritte und keine
-sonstige externe oder irreversible Wirkung.
+Der Aufruf allein autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte
+Worktrees und lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an
+Dritte und keine sonstige externe oder irreversible Wirkung. Eine konkrete Callbell-Tooloperation ist nur
+zulässig, wenn der aktuelle Nutzerauftrag, der maßgebliche Taskvertrag oder eine geltende globale
+beziehungsweise projektlokale Agentendatei Wirkung, Connection, Zielbereich und Grenzen separat und
+eindeutig festlegt. Wende dafür `callbell-core-cli-mcp` an. Eine Abschlussmeldung sendet ausschließlich der
+primäre Orchestrator; Subagents senden bei ihrer Fertigmeldung keine Nachricht.
 
 ## Laufvertrag festlegen
 

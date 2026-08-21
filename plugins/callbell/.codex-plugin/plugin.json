@@ -1,6 +1,6 @@
 {
   "name": "callbell",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Callbell verbindet passiven Sessionkontext, Regeln und Projektzustand mit ausdrücklich gestarteter Einrichtung, Planung, serieller Ausführung und sicheren Verwaltungswerkzeugen.",
   "author": { "name": "Callbell" },
   "homepage": "https://github.com/castrowithcee/callbell",
@@ -12,7 +12,7 @@
   "interface": {
     "displayName": "Callbell",
     "shortDescription": "Kontext halten und Arbeit sicher ausführen",
-    "longDescription": "Callbell ist die gemeinsame Infrastruktur und der ausdrücklich gestartete Arbeitsloop. Sessionkontext, Regeln, Scaffold, Backlog-Binding, Memory, Ablage, Import und Git stehen zusammen mit Setup, Zielklärung, Shape, Backlog, serieller Ausführung von höchstens fünf Tasks, Review und Worktree-Verwaltung in einem Plugin. Der Orchestrator steuert genau einen aktiven Task; Subagents setzen ihn um. Externe und irreversible Wirkungen bleiben ausgeschlossen.",
+    "longDescription": "Callbell ist die gemeinsame Infrastruktur und der ausdrücklich gestartete Arbeitsloop. Sessionkontext, Regeln, Scaffold, Backlog-Binding, Memory, Ablage, Import, Git und sichere Tooloperationen über CLI oder MCP stehen zusammen mit Setup, Zielklärung, Shape, Backlog, serieller Ausführung von höchstens fünf Tasks, Review und Worktree-Verwaltung in einem Plugin. Der Orchestrator steuert genau einen aktiven Task; Subagents setzen ihn um. Der Run-Aufruf allein erlaubt keine externe oder irreversible Wirkung; eine konkrete Callbell-Operation braucht separate eindeutige Autorität aus Auftrag, Taskvertrag oder geltender Agentendatei.",
     "developerName": "Callbell",
     "category": "Productivity",
     "capabilities": ["Instructions", "Lifecycle hooks", "Multi-agent orchestration"],

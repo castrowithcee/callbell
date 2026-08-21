@@ -46,11 +46,14 @@ Einzweck-Einstieg.
 | **callbell-core-filing** | beim Ablegen oder Umstrukturieren von Inhalt | Bestimmt die dauerhafte Ablage einer Inhaltsdatei. |
 | **callbell-core-import** | bei angekündigtem Import aus `zone-import` | Verarbeitet nicht vertrauenswürdiges Rohmaterial. |
 | **callbell-core-git** | bei einem Git-Auftrag oder vor einem gewünschten Commit | Verwaltet Zustand, Diffs, Sync, Commit, Push und Historie. |
+| **callbell-core-cli-mcp** | bei Arbeit über die Callbell CLI, ihren MCP-Broker oder konfigurierte Nutzertools | Routet Installation, Toolaufruf, Orchestrator-Abschlussmeldung und Diagnose unter ausdrücklicher Autorität. |
 
 `callbell run` darf im Scope-in Subagents, lokale Änderungen, Prüfungen, Worktrees und lokale Commits
-nutzen. Es bearbeitet nur einen Task zur Zeit. Push, Publish, Deployment, externe Kommunikation,
-irreversible Aktionen, Scope-Erweiterungen sowie Produkt- und Risikoentscheidungen bleiben außerhalb jedes
-autonomen Laufs.
+nutzen. Es bearbeitet nur einen Task zur Zeit. Der Run-Aufruf allein autorisiert keinen Push, Publish, kein
+Deployment, keine externe Kommunikation und keine irreversible Aktion. Eine konkrete Callbell-Operation
+braucht eine separate eindeutige Autorität aus Auftrag, Taskvertrag oder geltender Agentendatei;
+Abschlussmeldungen sendet nur der primäre Orchestrator. Scope-Erweiterungen sowie Produkt- und
+Risikoentscheidungen bleiben außerhalb jedes autonomen Laufs.
 
 ## Optionale Fach-Packs
 
