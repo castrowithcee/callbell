@@ -20,13 +20,15 @@ Nutzerprompt + AGENTS.md + SessionStart
 
 | Baustein | Aufgabe | Aktivierung |
 |---|---|---|
-| `callbell` | Passive Infrastruktur, Projektzustand, Verwaltungswerkzeuge und täglicher Arbeitsloop | standardmäßig installiert; Schleifen und Werkzeuge nur ausdrücklich |
+| `callbell` | Passive Infrastruktur, Projektzustand, Verwaltungswerkzeuge und täglicher Arbeitsloop | standardmäßig installiert; Schleifen und Verwaltungswerkzeuge nur ausdrücklich, Nutzertool-Operationen nur unter separater Autorität |
 | Fach-Packs | Methode für Code, Webprodukte und weitere Domänen | bewusst installiert, bei Relevanz geladen |
 | `__callbell__/` | Backlog-Binding, Memory, Zonen und Update-Stand des Projekts | per `callbell setup` |
 
-Sessionkontext und Regeln wirken passiv. Einrichtung, systemverändernde Werkzeuge und der tägliche
-Arbeitsloop beginnen ausschließlich durch einen Nutzeraufruf. Fach-Packs liefern Methode und
-Prüfperspektive; sie besitzen keinen konkurrierenden Backlog.
+Sessionkontext und Regeln wirken passiv. Einrichtung, systemverändernde Callbell-Verwaltungswerkzeuge und
+der tägliche Arbeitsloop beginnen ausschließlich durch einen Nutzeraufruf. Operationen über die Callbell
+CLI oder ihren MCP-Broker brauchen eine separate eindeutige Autorität aus Nutzerauftrag, Taskvertrag oder
+geltender Agentendatei. Fach-Packs liefern Methode und Prüfperspektive; sie besitzen keinen
+konkurrierenden Backlog.
 
 ## Schnellstart
 
@@ -70,7 +72,7 @@ Callbell besitzt einen Nutzer-Einstieg mit lazy geladenen Modi:
 |---|---|
 | `callbell goal` | Klärt Idee, Vision, MVP oder nächsten Produktzustand ausschließlich im Gespräch und ohne dauerhafte Änderung. |
 | `callbell shape` | Reift Chat, Idee oder Import zu Projektwissen und Arbeitspaketen und bildet bei leerem Horizont bis zu fünf sinnvolle `next`-Tasks. |
-| `callbell backlog` | Klärt Drafts, prüft ruhende Arbeit und ändert bei Bedarf Priorisierung oder `next`-Horizont. |
+| `callbell backlog` | Bespricht ohne Scope alle Drafts einzeln bis `ready`, prüft ruhende Arbeit und bildet einen sinnvollen `next`-Horizont. |
 | `callbell run` | Führt höchstens fünf ausführbare Tasks seriell aus; ein Orchestrator steuert und Subagents setzen jeweils den aktiven Task um. |
 | `callbell review` | Klärt menschliche Entscheidungen, Prüfungen und Handlungen einzeln, ohne die Ausführung fortzusetzen. |
 | `callbell worktree` | Zeigt gemeinsame Git-Worktrees nummeriert; `new` legt einen für den aktuellen Arbeitskontext an. |
@@ -122,9 +124,11 @@ Budget nicht zurück. Scheitert auch die zweite Korrektur, stoppt die Aufgabe, h
 kompakt fest und wechselt nach `review`. Blockiert sie weitere Tasks, endet der Lauf und der Nutzer
 entscheidet das weitere Vorgehen.
 
-Der Aufruf autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte Worktrees und
-lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an Dritte und keine
-sonstige externe oder irreversible Wirkung.
+Der Run-Aufruf allein autorisiert im gewählten Scope Subagents, lokale Änderungen, Prüfungen, isolierte
+Worktrees und lokale Commits. Er autorisiert keinen Push, Publish, kein Deployment, keine Nachricht an
+Dritte und keine sonstige externe oder irreversible Wirkung. Eine konkrete Callbell-Tooloperation ist nur
+unter der separat und eindeutig festgelegten Autorität aus Auftrag, Taskvertrag oder geltender
+Agentendatei zulässig. Eine Abschlussmeldung sendet ausschließlich der primäre Orchestrator.
 
 ## SessionStart-Kontext
 
@@ -188,7 +192,9 @@ gespiegelt. `BACKLOG.md` bleibt der dauerhaft geladene Wegweiser zur einzigen op
 Statusline, Telegram-Ping und Planungssystemwechsel; `callbell-mode` hält sessionweite Zusammenarbeitsmodi
 wie `adhd`. `callbell-help` bleibt der direkte Einzweck-Einstieg zur Übersicht. Filing, Import und Git
 werden bei passendem Gegenstand automatisch als `callbell-core-filing`, `callbell-core-import` und
-`callbell-core-git` gewählt.
+`callbell-core-git` gewählt. `callbell-core-cli-mcp` ist immer der automatische Einstieg für Installation,
+Nutzung und Diagnose der Callbell CLI oder ihres MCP-Brokers sowie für ausdrücklich autorisierte
+Operationen über konfigurierte Nutzertools.
 
 `callbell-dev` ist das Pack für tatsächliche Codearbeit. `callbell-web` ergänzt aktive Webprodukt-Arbeit um
 Produktprofil, Fähigkeiten, UI, Daten- und Berechtigungsgrenzen, Stack, Architektur, Sicherheit und Betrieb.
